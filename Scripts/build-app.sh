@@ -12,6 +12,7 @@ cp "$(swift build -c release --show-bin-path)/Spindle" "$APP/Contents/MacOS/Spin
 # Translations: Localization/<language>.txt holds one line per line of keys.txt.
 mkdir -p "$APP/Contents/Resources"
 python3 Scripts/make-strings.py Localization "$APP/Contents/Resources"
+cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 
 cat > "$APP/Contents/Info.plist" <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -21,6 +22,7 @@ cat > "$APP/Contents/Info.plist" <<'EOF'
     <key>CFBundleDevelopmentRegion</key><string>en</string>
     <key>CFBundleAllowMixedLocalizations</key><true/>
     <key>CFBundleExecutable</key><string>Spindle</string>
+    <key>CFBundleIconFile</key><string>AppIcon</string>
     <key>CFBundleIdentifier</key><string>com.nithinadithya.spindle</string>
     <key>CFBundleName</key><string>Spindle</string>
     <key>CFBundlePackageType</key><string>APPL</string>

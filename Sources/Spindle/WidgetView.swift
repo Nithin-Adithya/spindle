@@ -18,14 +18,16 @@ struct WidgetView: View {
             case .sleeve: sleeveTheme
             case .turntable: turntableTheme
             case .compact: compactTheme
+            case .cover: coverTheme
+            case .record: recordTheme
             }
         }
         .lineLimit(1)
         .fontDesign(settings.widgetFont.design)
         .foregroundStyle(.white)
         .frame(width: base.width, height: base.height)
-        .background(background)
-        .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+        .background { if settings.widgetTheme != .record { background } }
+        .clipShape(RoundedRectangle(cornerRadius: settings.widgetTheme == .record ? 0 : 26, style: .continuous))
         .scaleEffect(scale)
         .frame(width: base.width * scale, height: base.height * scale)
         .animation(.easeInOut(duration: 0.4), value: model.albumColor)
@@ -43,7 +45,7 @@ struct WidgetView: View {
             .animation(.spring(duration: 0.6), value: model.isPlaying)
 
             VStack(alignment: .leading, spacing: 8) {
-                titles(.title3, alignment: .leading)
+                titles(19, alignment: .leading)
                 Spacer(minLength: 0)
                 if settings.widgetProgress { Scrubber(model: model) }
                 TransportControls(model: model, scale: 0.85).frame(maxWidth: .infinity)
@@ -58,7 +60,7 @@ struct WidgetView: View {
             record(206)
                 .padding(6)
                 .background(RoundedRectangle(cornerRadius: 16, style: .continuous).fill(.black.opacity(0.22)))
-            titles(.headline, alignment: .center)
+            titles(15, alignment: .center)
             if settings.widgetProgress { Scrubber(model: model) }
             TransportControls(model: model, scale: 0.9)
         }
@@ -69,7 +71,7 @@ struct WidgetView: View {
         HStack(spacing: 12) {
             cover(72, radius: 12)
             VStack(alignment: .leading, spacing: 4) {
-                titles(.headline, alignment: .leading)
+                titles(15, alignment: .leading)
                 if settings.widgetProgress { Scrubber(model: model) }
             }
             TransportControls(model: model, scale: 0.7)
@@ -77,22 +79,44 @@ struct WidgetView: View {
         .padding(16)
     }
 
+    private var coverTheme: some View {
+        ZStack(alignment: .bottom) {
+            cover(250, radius: 0)
+            VStack(spacing: 6) {
+                titles(16, alignment: .center)
+                if settings.widgetProgress { Scrubber(model: model) }
+                TransportControls(model: model, scale: 0.8)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 34)
+            .padding(.bottom, 10)
+            .background(LinearGradient(colors: [.clear, .black.opacity(0.8)], startPoint: .top,
+                                       endPoint: UnitPoint(x: 0.5, y: 0.45)))
+        }
+    }
+
+    private var recordTheme: some View {
+        record(214)
+            .contentShape(Circle())
+            .onTapGesture { model.playPause() }
+    }
+
     // MARK: Pieces
 
-    private func titles(_ font: Font, alignment: HorizontalAlignment) -> some View {
+    private func titles(_ size: Double, alignment: HorizontalAlignment) -> some View {
         VStack(alignment: alignment, spacing: 3) {
             Text(model.track?.title ?? L("Nothing playing"))
-                .font(font.weight(.semibold))
+                .font(.system(size: size * settings.widgetTitleSize.scale, weight: .semibold))
                 .foregroundStyle(Color(hex: settings.widgetTitleColor))
             Text(model.track?.artist ?? model.idleMessage)
-                .font(.callout)
+                .font(.system(size: 12.5 * settings.widgetSubtitleSize.scale))
                 .foregroundStyle(.white.opacity(0.7))
         }
         .frame(maxWidth: .infinity, alignment: Alignment(horizontal: alignment, vertical: .center))
     }
 
     private func record(_ size: Double) -> some View {
-        VinylView(artwork: model.artwork, isPlaying: model.isPlaying)
+        VinylView(artwork: model.artwork, isPlaying: model.isPlaying, hue: model.artworkTint?.hue)
             .frame(width: size, height: size)
             .overlay(alignment: .topTrailing) {
                 if settings.widgetStylus { Stylus(isPlaying: model.isPlaying).frame(width: size * 0.5, height: size * 0.62) }
@@ -132,6 +156,12 @@ struct WidgetView: View {
             } else {
                 Color(white: 0.16)
             }
+        case .glass:
+            if #available(macOS 26.0, *) {
+                Color.clear.glassEffect(.regular, in: RoundedRectangle(cornerRadius: 26, style: .continuous))
+            } else {
+                model.albumColor
+            }
         case .transparent:
             Color.clear
         }
@@ -147,7 +177,7 @@ struct WidgetView: View {
 }
 
 /// A tonearm pivoting from the top-right corner; it swings onto the record while music plays.
-private struct Stylus: View {
+struct Stylus: View {
     let isPlaying: Bool
 
     var body: some View {

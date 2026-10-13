@@ -10,6 +10,9 @@ final class MusicViewModel: ObservableObject {
     /// The cover's own color (hue and saturation), for accents drawn on top of other surfaces.
     @Published private(set) var artworkTint: (hue: Double, saturation: Double)?
     @Published var position: Double = 0
+    /// The player's own volume, 0 to 100.
+    @Published var volume: Double = 100
+    var isAdjustingVolume = false
     /// Shown in place of the artist when there is no track.
     @Published private(set) var idleMessage = L("Open Spotify or Music to play")
     /// When set, playback is paused once this moment passes.
@@ -51,6 +54,11 @@ final class MusicViewModel: ObservableObject {
         send { $0.seek($1, to: seconds) }
     }
 
+    func setVolume(_ value: Double) {
+        volume = value
+        send { $0.setVolume($1, to: value) }
+    }
+
     private func checkSleepTimer() {
         guard let deadline = sleepDeadline, deadline <= Date() else { return }
         sleepDeadline = nil
@@ -90,6 +98,7 @@ final class MusicViewModel: ObservableObject {
         let playing = snapshot?.isPlaying ?? false
         if isPlaying != playing { isPlaying = playing }
         if !isScrubbing { position = snapshot?.position ?? 0 }
+        if !isAdjustingVolume, let level = snapshot?.volume, level != volume { volume = level }
         loadArtworkIfNeeded()
     }
 

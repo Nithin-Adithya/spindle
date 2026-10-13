@@ -29,9 +29,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var widget: NSPanel?
     private var widgetLayout = ""
     private let wallpaper = WallpaperManager()
-    private var notch: NSPanel?
+    private var notches: [Notch] = []
     private var notchWatchdog: Timer?
-    private var notchState: NotchState?
+    private var playerWindow: NSWindow?
     private var settingsWindow: NSWindow?
     private var subscriptions = Set<AnyCancellable>()
 
@@ -49,6 +49,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         popover.contentSize = card.view.fittingSize
 
         settings.openWindow = { [weak self] in self?.showSettings() }
+        settings.openPlayer = { [weak self] in self?.showPlayer() }
         // The change is announced before it lands, so apply on the next turn of the run loop.
         settings.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.applySettings() }
             .store(in: &subscriptions)
@@ -65,7 +66,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.addObserver(
             forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main
         ) { [weak self] _ in
-            guard let self, self.notch != nil else { return }
+            guard let self, !self.notches.isEmpty else { return }
             self.setNotch(visible: false)
             self.setNotch(visible: true)
         }
@@ -73,7 +74,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     /// Opening the app again is the way back in when both the menu bar icon and the Dock icon are hidden.
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows: Bool) -> Bool {
-        showSettings()
+        showPlayer()
+        if !settings.showMenuBarIcon { showSettings() }
         return true
     }
 
@@ -93,7 +95,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         applyDockIcon()
         setWidget(visible: settings.showWidget)
         widget?.level = settings.widgetLevel.windowLevel
-        let shadow = settings.widgetShadow && settings.widgetBackground != .transparent
+        let shadow = settings.widgetShadow && settings.widgetBackground != .transparent && settings.widgetTheme != .record
         if widget?.hasShadow != shadow { widget?.hasShadow = shadow }
         widget?.invalidateShadow()
         applyWallpaper()
@@ -121,9 +123,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         case .next: model.next()
         case .previous: model.previous()
         case .togglePopover: togglePopover()
-        case .toggleNotch: notchState?.pinned.toggle()
+        case .toggleNotch: notches.forEach { $0.state.pinned.toggle() }
         case .toggleMenuBarIcon: settings.showMenuBarIcon.toggle()
         }
+    }
+
+    private func showPlayer() {
+        popover.performClose(nil)
+        if playerWindow == nil {
+            let root = PlayerWindowView(model: model).environment(\.layoutDirection, appLayoutDirection)
+            let window = NSWindow(contentViewController: NSHostingController(rootView: root))
+            window.title = "Spindle"
+            window.styleMask = [.titled, .closable, .miniaturizable, .fullSizeContentView]
+            window.titlebarAppearsTransparent = true
+            window.titleVisibility = .hidden
+            window.isMovableByWindowBackground = true
+            window.isReleasedWhenClosed = false
+            window.layoutIfNeeded()  // the hosted view sizes the window; center only after that
+            window.center()
+            playerWindow = window
+        }
+        NSApp.activate(ignoringOtherApps: true)
+        playerWindow?.makeKeyAndOrderFront(nil)
     }
 
     private func showSettings() {
@@ -133,6 +154,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             window.title = L("Spindle Settings")
             window.styleMask = [.titled, .closable]
             window.isReleasedWhenClosed = false
+            window.layoutIfNeeded()
             window.center()
             settingsWindow = window
         }
@@ -201,26 +223,77 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         widget = panel
     }
 
-    /// A full-screen space takes the menu bar's window off screen. The screen's
+    /// One pill and the two regions that decide when it opens and closes.
+    private struct Notch {
+        let panel: NSPanel
+        let state: NotchState
+        let screen: NSScreen
+        let collapsed: NSRect
+        let expanded: NSRect
+    }
+
+    /// A full-screen space takes the menu bar's window off that display. The screen's
     /// own visible frame can't be used for this: it keeps reporting the bar's height.
-    private static func menuBarIsOnScreen() -> Bool {
+    private static func screensShowingMenuBar() -> [NSScreen] {
         let level = Int(CGWindowLevelForKey(.mainMenuWindow))
         let windows = CGWindowListCopyWindowInfo([.optionOnScreenOnly], kCGNullWindowID) as? [[String: Any]] ?? []
-        return windows.contains {
-            $0[kCGWindowLayer as String] as? Int == level && $0[kCGWindowOwnerName as String] as? String == "Window Server"
+        let bars: [CGRect] = windows.compactMap {
+            guard $0[kCGWindowLayer as String] as? Int == level,
+                  $0[kCGWindowOwnerName as String] as? String == "Window Server",
+                  let bounds = $0[kCGWindowBounds as String] as? NSDictionary else { return nil }
+            return CGRect(dictionaryRepresentation: bounds)
+        }
+        // Window bounds count down from the top of the primary display; screen frames count up.
+        let primaryHeight = NSScreen.screens.first?.frame.height ?? 0
+        return NSScreen.screens.filter { screen in
+            let top = CGPoint(x: screen.frame.midX, y: primaryHeight - screen.frame.maxY + 2)
+            return bars.contains { $0.contains(top) }
         }
     }
 
     private func setNotch(visible: Bool) {
-        guard visible, let screen = NSScreen.main else {
+        guard visible else {
             notchWatchdog?.invalidate()
-            notch?.close()
-            notch = nil
-            notchState = nil
+            notches.forEach { $0.panel.close() }
+            notches = []
             return
         }
-        guard notch == nil else { return }
+        guard notches.isEmpty else { return }
+        notches = NSScreen.screens.map(makeNotch)
 
+        // Hover tracking can't see through a window that ignores the mouse, so watch the pointer.
+        var lastInside = [Date](repeating: .distantPast, count: notches.count)
+        var tick = 0
+        var barScreens = NSScreen.screens
+        let watchdog = Timer(timeInterval: 1.0 / 30, repeats: true) { [weak self] _ in
+            guard let self else { return }
+            // Listing windows is too costly for every tick; twice a second is plenty.
+            tick += 1
+            if tick % 15 == 0 { barScreens = Self.screensShowingMenuBar() }
+            let pointer = NSEvent.mouseLocation
+
+            for (index, notch) in self.notches.enumerated() {
+                let hidden = self.settings.hideNotchInFullScreen && !barScreens.contains(notch.screen)
+                if hidden == notch.panel.isVisible { hidden ? notch.panel.orderOut(nil) : notch.panel.orderFrontRegardless() }
+
+                // At the very top the pointer sits exactly on the screen's upper edge,
+                // which a rect excludes, so let the region reach past it.
+                var region = notch.state.expanded ? notch.expanded : notch.collapsed
+                region.size.height += 50
+                let inside = !hidden && self.model.track != nil && (region.contains(pointer) || notch.state.pinned)
+                if inside { lastInside[index] = Date() }
+                // Leaving has to last a moment so skimming the edge doesn't flicker it shut.
+                let open = inside || (notch.state.expanded && Date().timeIntervalSince(lastInside[index]) < 0.15)
+                guard notch.state.expanded != open else { continue }
+                notch.panel.ignoresMouseEvents = !open
+                withAnimation(.spring(duration: 0.3)) { notch.state.expanded = open }
+            }
+        }
+        RunLoop.main.add(watchdog, forMode: .common)  // keeps running while a slider is dragged
+        notchWatchdog = watchdog
+    }
+
+    private func makeNotch(on screen: NSScreen) -> Notch {
         // Screens without a camera housing get a pill of the same size instead.
         var notchWidth = 180.0
         var hasNotch = false
@@ -233,12 +306,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             height = screen.safeAreaInsets.top
             hasNotch = true
         }
-        let collapsed = CGSize(width: notchWidth + NotchView.wing * 2, height: height)
-        let expanded = NotchView.expandedSize(notchWidth: notchWidth, collapsedHeight: height, hasNotch: hasNotch)
         func frame(_ size: CGSize) -> NSRect {
             NSRect(x: screen.frame.midX - size.width / 2, y: screen.frame.maxY - size.height,
                    width: size.width, height: size.height)
         }
+        let collapsed = frame(CGSize(width: notchWidth + NotchView.wing * 2, height: height))
+        let expanded = frame(NotchView.expandedSize(notchWidth: notchWidth, collapsedHeight: height, hasNotch: hasNotch))
 
         let state = NotchState()
         let panel = makePanel(NotchView(model: model, state: state, notchWidth: notchWidth, collapsedHeight: height,
@@ -248,39 +321,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // The window stays at its expanded size and only the view inside animates:
         // resizing the window on hover made the open animation snap. While collapsed
         // it ignores the mouse so the transparent area doesn't block what's beneath.
-        panel.setFrame(frame(expanded), display: true)
+        panel.setFrame(expanded, display: true)
         panel.ignoresMouseEvents = true
-
-        // Hover tracking can't see through a window that ignores the mouse, so watch the pointer.
-        var lastInside = Date.distantPast
-        var tick = 0
-        var fullScreen = false
-        notchState = state
-        let watchdog = Timer(timeInterval: 1.0 / 30, repeats: true) { [weak self] _ in
-            let pointer = NSEvent.mouseLocation
-            // At the very top the pointer sits exactly on the screen's upper edge,
-            // which a rect excludes, so let the region reach past it.
-            var region = frame(state.expanded ? expanded : collapsed)
-            region.size.height += 50
-            guard let self else { return }
-
-            // Listing windows is too costly for every tick; twice a second is plenty.
-            tick += 1
-            if tick % 15 == 0 { fullScreen = !Self.menuBarIsOnScreen() }
-            let hidden = fullScreen && self.settings.hideNotchInFullScreen
-            if hidden == panel.isVisible { hidden ? panel.orderOut(nil) : panel.orderFrontRegardless() }
-
-            let inside = !hidden && self.model.track != nil && (region.contains(pointer) || state.pinned)
-            if inside { lastInside = Date() }
-            // Leaving has to last a moment so skimming the edge doesn't flicker it shut.
-            let open = inside || (state.expanded && Date().timeIntervalSince(lastInside) < 0.15)
-            guard state.expanded != open else { return }
-            panel.ignoresMouseEvents = !open
-            withAnimation(.spring(duration: 0.3)) { state.expanded = open }
-        }
-        RunLoop.main.add(watchdog, forMode: .common)  // keeps running while a slider is dragged
-        notchWatchdog = watchdog
         panel.orderFrontRegardless()
-        notch = panel
+        return Notch(panel: panel, state: state, screen: screen, collapsed: collapsed, expanded: expanded)
     }
 }

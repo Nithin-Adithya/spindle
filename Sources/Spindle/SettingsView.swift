@@ -16,8 +16,9 @@ struct SettingsView: View {
             Form { notch }.formStyle(.grouped).tabItem { Label("Notch", systemImage: "capsule.tophalf.filled") }
             Form { widget }.formStyle(.grouped).tabItem { Label("Widget", systemImage: "rectangle.on.rectangle") }
             Form { shortcuts }.formStyle(.grouped).tabItem { Label("Shortcuts", systemImage: "keyboard") }
+            Form { guide }.formStyle(.grouped).tabItem { Label("Guide", systemImage: "questionmark.circle") }
         }
-        .frame(width: 480, height: 520)
+        .frame(width: 540, height: 540)
     }
 
     @ViewBuilder private var general: some View {
@@ -39,6 +40,8 @@ struct SettingsView: View {
                 Text("Music source")
                 Text("Automatic follows whichever of Spotify and Apple Music is playing.")
             }
+            row("Show time remaining", "The time on the right of the seek bar counts down instead of showing the track's length.",
+                isOn: $settings.timeCountsDown)
             Picker(selection: Binding(get: { sleepMinutes }, set: setSleep)) {
                 Text("Off").tag(0)
                 ForEach([5, 15, 30, 45, 60, 90], id: \.self) { Text("\($0) minutes").tag($0) }
@@ -50,6 +53,12 @@ struct SettingsView: View {
         Section("Appearance") {
             row("Album color", "Tints the popover and widget with the cover's color. Off uses dark grey.",
                 isOn: $settings.useAlbumColor)
+            Picker("Record style", selection: $settings.vinylStyle) {
+                ForEach(VinylStyle.allCases) { Text($0.label).tag($0) }
+            }
+            Picker("Player size", selection: $settings.playerSize) {
+                ForEach(WidgetSize.allCases) { Text($0.label).tag($0) }
+            }
         }
     }
 
@@ -94,10 +103,16 @@ struct SettingsView: View {
                 ForEach(WidgetFont.allCases) { Text($0.label).tag($0) }
             }
             ColorPicker("Title color", selection: hexBinding(\.widgetTitleColor), supportsOpacity: false)
+            Picker("Title size", selection: $settings.widgetTitleSize) {
+                ForEach(TextSize.allCases) { Text($0.label).tag($0) }
+            }
+            Picker("Subtitle size", selection: $settings.widgetSubtitleSize) {
+                ForEach(TextSize.allCases) { Text($0.label).tag($0) }
+            }
         }
         Section("Background") {
             Picker("Background", selection: $settings.widgetBackground) {
-                ForEach(WidgetBackground.allCases) { Text($0.label).tag($0) }
+                ForEach(WidgetBackground.available) { Text($0.label).tag($0) }
             }
             if settings.widgetBackground == .color {
                 ColorPicker("Color", selection: hexBinding(\.widgetColor), supportsOpacity: false)
@@ -118,6 +133,26 @@ struct SettingsView: View {
         Section("Desktop") {
             row("Cover art as wallpaper", "Replaces your desktop picture with the current cover on every display. "
                 + "Your own picture comes back when you turn this off or quit Spindle.", isOn: $settings.coverAsWallpaper)
+        }
+    }
+
+    @ViewBuilder private var guide: some View {
+        Section("Supported music services") {
+            Text(L("Spotify and Apple Music, through their Mac apps. Music playing in a browser is not supported yet."))
+        }
+        Section("Permission") {
+            Text(L("The first time a player is open, macOS asks whether Spindle may control it. Choose Allow. "
+                + "If you chose Don't Allow, turn it back on under Privacy & Security, Automation."))
+            Button(L("Open Automation Settings")) {
+                if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Automation") {
+                    NSWorkspace.shared.open(url)
+                }
+            }
+        }
+        Section("Tips") {
+            Text(L("Hover the pill at the top of the screen to open it, and move away to close it."))
+            Text(L("Drag the desktop widget anywhere; it remembers where you left it."))
+            Text(L("Click the disc in the menu bar for the player, or open Spindle again for the full window."))
         }
     }
 

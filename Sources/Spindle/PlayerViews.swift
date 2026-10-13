@@ -29,6 +29,7 @@ struct TransportControls: View {
 
 struct Scrubber: View {
     @ObservedObject var model: MusicViewModel
+    @ObservedObject private var settings = Settings.shared
     var large = false
     var tint: Color = .white
 
@@ -44,7 +45,11 @@ struct Scrubber: View {
             HStack {
                 Text(Self.clock(model.position))
                 Spacer()
-                Text(Self.clock(model.track?.duration ?? 0))
+                if settings.timeCountsDown {
+                    Text("-" + Self.clock(max(0, (model.track?.duration ?? 0) - model.position)))
+                } else {
+                    Text(Self.clock(model.track?.duration ?? 0))
+                }
             }
             .font((large ? Font.callout : Font.caption2).monospacedDigit())
             .foregroundStyle(tint.opacity(0.6))
@@ -59,14 +64,58 @@ struct Scrubber: View {
     }
 }
 
+struct VolumeSlider: View {
+    @ObservedObject var model: MusicViewModel
+    var tint: Color = .white
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "speaker.fill")
+            Slider(value: $model.volume, in: 0...100) { editing in
+                model.isAdjustingVolume = editing
+                if !editing { model.setVolume(model.volume) }
+            }
+            .controlSize(.mini)
+            .tint(tint)
+            Image(systemName: "speaker.wave.3.fill")
+        }
+        .font(.caption2)
+        .foregroundStyle(tint.opacity(0.7))
+        .disabled(model.track == nil)
+        .environment(\.layoutDirection, .leftToRight)
+    }
+}
+
+/// Reports its content's size multiplied by `scale`, so a scaled view takes
+/// the room it visually occupies. Pair it with `.scaleEffect(scale)` inside.
+struct ScaledLayout: Layout {
+    var scale: Double
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let size = subviews[0].sizeThatFits(.unspecified)
+        return CGSize(width: size.width * scale, height: size.height * scale)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        subviews[0].place(at: CGPoint(x: bounds.midX, y: bounds.midY), anchor: .center,
+                          proposal: ProposedViewSize(subviews[0].sizeThatFits(.unspecified)))
+    }
+}
+
 /// The menu-bar popover.
 struct PlayerCardView: View {
     @ObservedObject var model: MusicViewModel
     @ObservedObject var settings = Settings.shared
 
     var body: some View {
+        ScaledLayout(scale: settings.playerSize.scale) {
+            card.scaleEffect(settings.playerSize.scale)
+        }
+    }
+
+    private var card: some View {
         VStack(spacing: 12) {
-            VinylView(artwork: model.artwork, isPlaying: model.isPlaying)
+            VinylView(artwork: model.artwork, isPlaying: model.isPlaying, hue: model.artworkTint?.hue)
                 .frame(width: 170, height: 170)
 
             VStack(spacing: 2) {
@@ -84,6 +133,7 @@ struct PlayerCardView: View {
 
             Scrubber(model: model)
             TransportControls(model: model)
+            VolumeSlider(model: model)
 
             Divider().overlay(.white.opacity(0.2))
 
@@ -93,6 +143,8 @@ struct PlayerCardView: View {
                 Toggle("Album color", isOn: $settings.useAlbumColor)
                 HStack {
                     Button("Settings…") { settings.openWindow() }
+                    Spacer()
+                    Button("Open player") { settings.openPlayer() }
                     Spacer()
                     Button("Quit Spindle") { NSApp.terminate(nil) }
                 }

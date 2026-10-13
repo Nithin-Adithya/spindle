@@ -44,6 +44,7 @@ struct PlayerSnapshot {
     var source: PlayerSource
     var isPlaying: Bool
     var position: Double
+    var volume: Double
     var track: Track?
 }
 
@@ -75,40 +76,42 @@ final class PlayerBridge {
         let fields: String
         switch source {
         case .music:
-            fields = "{s, name of t, artist of t, album of t, duration of t, player position, (database ID of t) as text}"
+            fields = "{s, v, name of t, artist of t, album of t, duration of t, player position, (database ID of t) as text}"
         case .spotify:
-            fields = "{s, name of t, artist of t, album of t, (duration of t) / 1000, player position, id of t, artwork url of t}"
+            fields = "{s, v, name of t, artist of t, album of t, (duration of t) / 1000, player position, id of t, artwork url of t}"
         }
         let script = """
         tell application "\(source.appName)"
             set s to player state as text
+            set v to sound volume
             try
                 set t to current track
                 return \(fields)
             on error
-                return {s}
+                return {s, v}
             end try
         end tell
         """
-        guard let result = run(script), result.numberOfItems >= 1 else { return nil }
+        guard let result = run(script), result.numberOfItems >= 2 else { return nil }
 
         func text(_ index: Int) -> String { result.atIndex(index)?.stringValue ?? "" }
         func number(_ index: Int) -> Double { result.atIndex(index)?.doubleValue ?? 0 }
 
         let isPlaying = text(1) == "playing"
-        guard result.numberOfItems >= 7 else {
-            return PlayerSnapshot(source: source, isPlaying: isPlaying, position: 0, track: nil)
+        let volume = number(2)
+        guard result.numberOfItems >= 8 else {
+            return PlayerSnapshot(source: source, isPlaying: isPlaying, position: 0, volume: volume, track: nil)
         }
         let track = Track(
             source: source,
-            id: text(7),
-            title: text(2),
-            artist: text(3),
-            album: text(4),
-            duration: number(5),
-            artworkURL: result.numberOfItems >= 8 ? URL(string: text(8)) : nil
+            id: text(8),
+            title: text(3),
+            artist: text(4),
+            album: text(5),
+            duration: number(6),
+            artworkURL: result.numberOfItems >= 9 ? URL(string: text(9)) : nil
         )
-        return PlayerSnapshot(source: source, isPlaying: isPlaying, position: number(6), track: track)
+        return PlayerSnapshot(source: source, isPlaying: isPlaying, position: number(7), volume: volume, track: track)
     }
 
     /// Music hands artwork over as raw image data; Spotify only gives a URL.
@@ -127,6 +130,11 @@ final class PlayerBridge {
     func seek(_ source: PlayerSource, to seconds: Double) {
         guard source.isRunning else { return }
         _ = run("tell application \"\(source.appName)\" to set player position to \(Int(seconds))", cache: false)
+    }
+
+    func setVolume(_ source: PlayerSource, to volume: Double) {
+        guard source.isRunning else { return }
+        _ = run("tell application \"\(source.appName)\" to set sound volume to \(Int(volume))", cache: false)
     }
 
     private func command(_ verb: String, _ source: PlayerSource) {

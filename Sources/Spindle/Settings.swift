@@ -17,6 +17,8 @@ final class Settings: ObservableObject {
 
     /// Set by the app delegate; opens the settings window.
     var openWindow: () -> Void = {}
+    /// Set by the app delegate; opens the main player window.
+    var openPlayer: () -> Void = {}
 
     // General
     @AppStorage("showMenuBarIcon") var showMenuBarIcon = true
@@ -24,6 +26,9 @@ final class Settings: ObservableObject {
     @AppStorage("artworkInDock") var artworkInDock = false
     @AppStorage("source") var source = SourcePreference.automatic
     @AppStorage("useAlbumColor") var useAlbumColor = true
+    @AppStorage("timeCountsDown") var timeCountsDown = false
+    @AppStorage("playerSize") var playerSize = WidgetSize.medium
+    @AppStorage("vinylStyle") var vinylStyle = VinylStyle.classic
 
     // Notch
     @AppStorage("showNotch") var showNotch = false
@@ -40,14 +45,53 @@ final class Settings: ObservableObject {
     @AppStorage("widgetImagePath") var widgetImagePath = ""
     @AppStorage("widgetTitleColor") var widgetTitleColor = "#FFFFFF"
     @AppStorage("widgetFont") var widgetFont = WidgetFont.standard
+    @AppStorage("widgetTitleSize") var widgetTitleSize = TextSize.regular
+    @AppStorage("widgetSubtitleSize") var widgetSubtitleSize = TextSize.regular
     @AppStorage("widgetStylus") var widgetStylus = true
     @AppStorage("widgetProgress") var widgetProgress = true
     @AppStorage("widgetShadow") var widgetShadow = true
     @AppStorage("coverAsWallpaper") var coverAsWallpaper = false
 }
 
+enum VinylStyle: String, CaseIterable, Identifiable {
+    case classic, tinted, picture, gold
+
+    var id: String { rawValue }
+
+    var label: String {
+        switch self {
+        case .classic: return L("Classic black")
+        case .tinted: return L("Album color")
+        case .picture: return L("Picture disc")
+        case .gold: return L("Gold")
+        }
+    }
+}
+
+enum TextSize: String, CaseIterable, Identifiable {
+    case small, regular, large
+
+    var id: String { rawValue }
+
+    var label: String {
+        switch self {
+        case .small: return L("Small")
+        case .regular: return L("Medium")
+        case .large: return L("Large")
+        }
+    }
+
+    var scale: Double {
+        switch self {
+        case .small: return 0.85
+        case .regular: return 1
+        case .large: return 1.2
+        }
+    }
+}
+
 enum WidgetTheme: String, CaseIterable, Identifiable {
-    case sleeve, turntable, compact
+    case sleeve, turntable, compact, cover, record
 
     var id: String { rawValue }
 
@@ -56,6 +100,8 @@ enum WidgetTheme: String, CaseIterable, Identifiable {
         case .sleeve: return L("Sleeve")
         case .turntable: return L("Turntable")
         case .compact: return L("Compact")
+        case .cover: return L("Cover")
+        case .record: return L("Record only")
         }
     }
 
@@ -64,6 +110,8 @@ enum WidgetTheme: String, CaseIterable, Identifiable {
         case .sleeve: return L("The cover as a record sleeve with the record sliding out beside it.")
         case .turntable: return L("A full record on a deck with the tonearm, track details underneath.")
         case .compact: return L("A small bar with the cover, track details and controls. No record.")
+        case .cover: return L("The cover fills the card, with the track details and controls over it.")
+        case .record: return L("Just the spinning record, with no card behind it. Click it to play or pause.")
         }
     }
 
@@ -73,6 +121,8 @@ enum WidgetTheme: String, CaseIterable, Identifiable {
         case .sleeve: return CGSize(width: 456, height: 186)
         case .turntable: return CGSize(width: 250, height: 372)
         case .compact: return CGSize(width: 360, height: 104)
+        case .cover: return CGSize(width: 250, height: 250)
+        case .record: return CGSize(width: 230, height: 230)
         }
     }
 }
@@ -102,7 +152,13 @@ enum WidgetSize: String, CaseIterable, Identifiable {
 }
 
 enum WidgetBackground: String, CaseIterable, Identifiable {
-    case album, cover, color, image, transparent
+    case album, cover, color, image, glass, transparent
+
+    /// Liquid Glass needs macOS 26.
+    static var available: [WidgetBackground] {
+        if #available(macOS 26.0, *) { return allCases }
+        return allCases.filter { $0 != .glass }
+    }
 
     var id: String { rawValue }
 
@@ -112,6 +168,7 @@ enum WidgetBackground: String, CaseIterable, Identifiable {
         case .cover: return L("Album cover")
         case .color: return L("Custom color")
         case .image: return L("Custom image")
+        case .glass: return L("Liquid Glass")
         case .transparent: return L("Transparent")
         }
     }

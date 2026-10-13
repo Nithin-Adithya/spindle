@@ -1,0 +1,99 @@
+Không có gì đang phát
+Mở Spotify hoặc Nhạc để phát
+Nhạc đã dừng
+Tiện ích màn hình nền
+Hiển thị ở tai thỏ
+Màu album
+Cài đặt…
+Thoát Spindle
+Cài đặt Spindle
+Cài đặt chung
+Tai thỏ
+Tiện ích
+Phím tắt
+Ứng dụng
+Mở khi đăng nhập
+Khởi động Spindle khi bạn đăng nhập vào máy Mac.
+Hiển thị trên thanh menu
+Biểu tượng đĩa dùng để mở trình phát. Nếu bạn ẩn nó, hãy mở lại Spindle từ Finder hoặc Spotlight để quay lại các cài đặt này.
+Hiển thị biểu tượng trên Dock
+Khi tắt, Spindle không xuất hiện trên Dock và trình chuyển đổi ứng dụng.
+Hiển thị bìa trên Dock
+Dùng bìa hiện tại làm biểu tượng trên Dock.
+Nhạc
+Nguồn nhạc
+Tự động sẽ theo dịch vụ nào đang phát, Spotify hoặc Apple Music.
+Tắt
+%lld phút
+Hẹn giờ ngủ
+Tạm dừng nhạc sau một khoảng thời gian đã đặt.
+Tạm dừng nhạc sau %d phút.
+Giao diện
+Nhuộm cửa sổ bật lên và tiện ích bằng màu của bìa. Khi tắt sẽ dùng màu xám đậm.
+Một viên thuốc ở giữa phía trên màn hình hiển thị bìa và các thanh. Di chuột lên để mở trình phát có nút điều khiển.
+Ẩn khi toàn màn hình
+Gỡ viên thuốc khi một ứng dụng đang ở chế độ toàn màn hình trên màn hình đó.
+Kiểu
+Các kiểu kính yêu cầu macOS 26 trở lên.
+Một thẻ trên màn hình nền có đĩa nhạc và nút điều khiển. Kéo thẻ đến bất kỳ đâu.
+Hành vi cửa sổ
+Bên dưới giữ nó trên màn hình nền dưới mọi thứ; bên trên cho nó nổi trên các cửa sổ khác.
+Chủ đề
+Kích cỡ
+Phông chữ
+Màu tiêu đề
+Nền
+Màu
+Chưa chọn hình ảnh
+Chọn…
+Bóng đổ
+Bóng mềm bên dưới tiện ích. Nền trong suốt không bao giờ có bóng.
+Chi tiết
+Hiển thị kim đĩa
+Cần đĩa xoay vào đĩa nhạc khi nhạc đang phát.
+Hiển thị tiến trình
+Thanh tua và thời gian.
+Màn hình nền
+Bìa làm hình nền
+Thay hình nền của bạn bằng bìa hiện tại trên mọi màn hình. Hình của bạn sẽ trở lại khi bạn tắt tính năng này hoặc thoát Spindle.
+Phím tắt hoạt động trong mọi ứng dụng. Bấm vào một mục rồi nhấn các phím; phải có ⌘, ⌥ hoặc ⌃. Nhấn Delete để xóa, Esc để hủy.
+Không thể thay đổi: %@
+Nhấn phím…
+Ghi
+Phát/tạm dừng
+Bài tiếp theo
+Bài trước
+Bật/tắt cửa sổ bật lên
+Mở/đóng tai thỏ
+Bật/tắt biểu tượng thanh menu
+Vỏ đĩa
+Mâm đĩa
+Gọn
+Bìa làm vỏ đĩa với đĩa nhạc trượt ra bên cạnh.
+Một đĩa nhạc đầy đủ trên mâm đĩa có cần đĩa, chi tiết bài hát bên dưới.
+Một thanh nhỏ có bìa, chi tiết bài hát và nút điều khiển. Không có đĩa.
+Nhỏ
+Vừa
+Lớn
+Rất lớn
+Bìa album
+Màu tùy chỉnh
+Hình ảnh tùy chỉnh
+Trong suốt
+Tiêu chuẩn
+Bo tròn
+Có chân
+Đơn cách
+Tự động
+Dưới tất cả cửa sổ
+Như cửa sổ bình thường
+Trên tất cả cửa sổ
+Đen
+Kính (theo hệ thống)
+Kính, sáng
+Kính, tối
+Viên thuốc đặc ban đầu.
+Kính tối ở Chế độ tối, kính sáng ở Chế độ sáng.
+Luôn sáng, với chữ và nút điều khiển màu đen.
+Luôn tối, với chữ và nút điều khiển màu trắng.
+Dấu cách

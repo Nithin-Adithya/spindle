@@ -1,0 +1,99 @@
+Keine Wiedergabe
+Öffne Spotify oder Musik, um etwas abzuspielen
+Musik ist gestoppt
+Schreibtisch-Widget
+Notch-Anzeige
+Albumfarbe
+Einstellungen …
+Spindle beenden
+Spindle-Einstellungen
+Allgemein
+Notch
+Widget
+Kurzbefehle
+App
+Bei der Anmeldung starten
+Startet Spindle, wenn du dich an deinem Mac anmeldest.
+In der Menüleiste anzeigen
+Das Plattensymbol, das den Player öffnet. Wenn du es ausblendest, öffne Spindle erneut über den Finder oder Spotlight, um zu diesen Einstellungen zurückzukehren.
+Dock-Symbol anzeigen
+Aus hält Spindle aus dem Dock und dem App-Umschalter heraus.
+Cover im Dock anzeigen
+Verwendet das aktuelle Cover als Dock-Symbol.
+Musik
+Musikquelle
+Automatisch folgt dem Dienst, der gerade spielt: Spotify oder Apple Music.
+Aus
+%lld Minuten
+Einschlaf-Timer
+Pausiert die Musik nach einer festgelegten Zeit.
+Pausiert die Musik in %d Min.
+Erscheinungsbild
+Färbt Popover und Widget in der Farbe des Covers. Aus verwendet Dunkelgrau.
+Eine Pille oben in der Bildschirmmitte mit Cover und Balken. Bewege den Zeiger darauf, um einen Player mit Steuerelementen zu öffnen.
+Im Vollbildmodus ausblenden
+Entfernt die Pille, solange eine App auf diesem Bildschirm im Vollbildmodus ist.
+Stil
+Glas-Stile benötigen macOS 26 oder neuer.
+Eine Karte auf dem Schreibtisch mit Schallplatte und Steuerelementen. Ziehe sie an eine beliebige Stelle.
+Fensterverhalten
+Unten bleibt es auf dem Schreibtisch unter allem; oben schwebt es über anderen Fenstern.
+Design
+Größe
+Schrift
+Titelfarbe
+Hintergrund
+Farbe
+Kein Bild ausgewählt
+Auswählen …
+Schatten
+Ein weicher Schatten unter dem Widget. Transparente Hintergründe haben nie einen.
+Details
+Tonarm anzeigen
+Der Tonarm, der auf die Platte schwenkt, während Musik läuft.
+Fortschritt anzeigen
+Die Suchleiste und die Zeiten.
+Schreibtisch
+Cover als Hintergrundbild
+Ersetzt dein Schreibtischbild auf jedem Bildschirm durch das aktuelle Cover. Dein eigenes Bild kehrt zurück, wenn du dies ausschaltest oder Spindle beendest.
+Kurzbefehle funktionieren in jeder App. Klicke auf einen und drücke dann die Tasten; sie müssen ⌘, ⌥ oder ⌃ enthalten. Drücke die Löschtaste zum Entfernen, Esc zum Abbrechen.
+Änderung nicht möglich: %@
+Tasten drücken …
+Aufnehmen
+Wiedergabe/Pause
+Nächster Titel
+Vorheriger Titel
+Popover ein-/ausblenden
+Notch öffnen/schließen
+Menüleistensymbol ein-/ausblenden
+Hülle
+Plattenspieler
+Kompakt
+Das Cover als Plattenhülle, aus der die Platte seitlich herausgleitet.
+Eine ganze Platte auf einem Plattenspieler mit Tonarm, Titeldetails darunter.
+Eine kleine Leiste mit Cover, Titeldetails und Steuerelementen. Keine Platte.
+Klein
+Mittel
+Groß
+Sehr groß
+Albumcover
+Eigene Farbe
+Eigenes Bild
+Transparent
+Standard
+Abgerundet
+Serifen
+Festbreite
+Automatisch
+Unter allen Fenstern
+Wie ein normales Fenster
+Über allen Fenstern
+Schwarz
+Glas (wie System)
+Glas, hell
+Glas, dunkel
+Die ursprüngliche einfarbige Pille.
+Dunkles Glas im Dunkelmodus, helles Glas im Hellmodus.
+Immer hell, mit schwarzem Text und schwarzen Steuerelementen.
+Immer dunkel, mit weißem Text und weißen Steuerelementen.
+Leertaste

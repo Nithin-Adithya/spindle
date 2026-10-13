@@ -1,0 +1,99 @@
+Çalan bir şey yok
+Çalmak için Spotify veya Müzik’i açın
+Müzik durduruldu
+Masaüstü araç takımı
+Çentik görünümü
+Albüm rengi
+Ayarlar…
+Spindle’dan Çık
+Spindle Ayarları
+Genel
+Çentik
+Araç Takımı
+Kestirmeler
+Uygulama
+Oturum açılışında başlat
+Mac’inizde oturum açtığınızda Spindle’ı başlatır.
+Menü çubuğunda göster
+Oynatıcıyı açan disk simgesi. Gizlerseniz bu ayarlara dönmek için Spindle’ı Finder veya Spotlight’tan yeniden açın.
+Dock simgesini göster
+Kapalıyken Spindle, Dock’ta ve uygulama değiştiricide görünmez.
+Kapağı Dock’ta göster
+Geçerli kapağı Dock simgesi olarak kullanır.
+Müzik
+Müzik kaynağı
+Otomatik, Spotify ve Apple Music’ten hangisi çalıyorsa onu izler.
+Kapalı
+%lld dakika
+Uyku zamanlayıcısı
+Belirlenen süreden sonra müziği duraklatır.
+Müziği %d dk içinde duraklatır.
+Görünüm
+Açılır pencereyi ve araç takımını kapağın rengiyle renklendirir. Kapalıyken koyu gri kullanılır.
+Ekranın üst ortasında kapağı ve çubukları gösteren bir hap. Denetimli bir oynatıcı açmak için imleci üzerine getirin.
+Tam ekranda gizle
+Bir uygulama o ekranda tam ekrandayken hapı kaldırır.
+Stil
+Cam stilleri macOS 26 veya sonrasını gerektirir.
+Masaüstünde plak ve denetimler içeren bir kart. İstediğiniz yere sürükleyin.
+Pencere davranışı
+Altta, masaüstünde her şeyin altında tutar; üstte, diğer pencerelerin üzerinde yüzdürür.
+Tema
+Boyut
+Yazı tipi
+Başlık rengi
+Arka plan
+Renk
+Görüntü seçilmedi
+Seç…
+Gölge
+Araç takımının altında yumuşak bir gölge. Saydam arka planlarda hiç gölge olmaz.
+Ayrıntılar
+İğneyi göster
+Müzik çalarken plağın üzerine gelen pikap kolu.
+İlerlemeyi göster
+Arama çubuğu ve süreler.
+Masaüstü
+Kapağı duvar kâğıdı yap
+Masaüstü resminizi her ekranda geçerli kapakla değiştirir. Bunu kapattığınızda veya Spindle’dan çıktığınızda kendi resminiz geri gelir.
+Kestirmeler her uygulamada çalışır. Birine tıklayın, ardından tuşlara basın; ⌘, ⌥ veya ⌃ içermelidir. Silmek için Delete’e, vazgeçmek için Esc’ye basın.
+Bu değiştirilemedi: %@
+Tuşlara basın…
+Kaydet
+Çal/duraklat
+Sonraki parça
+Önceki parça
+Açılır pencereyi aç/kapat
+Çentiği aç/kapat
+Menü çubuğu simgesini göster/gizle
+Kılıf
+Pikap
+Kompakt
+Kapak bir plak kılıfı gibi, plak yanından dışarı kayar.
+Pikap koluyla birlikte tablada tam bir plak, parça ayrıntıları altında.
+Kapak, parça ayrıntıları ve denetimler içeren küçük bir çubuk. Plak yok.
+Küçük
+Orta
+Büyük
+Çok büyük
+Albüm kapağı
+Özel renk
+Özel görüntü
+Saydam
+Standart
+Yuvarlak
+Serifli
+Eş aralıklı
+Otomatik
+Tüm pencerelerin altında
+Normal bir pencere gibi
+Tüm pencerelerin üstünde
+Siyah
+Cam (sisteme uy)
+Cam, açık
+Cam, koyu
+Özgün düz hap.
+Koyu Modda koyu cam, Açık Modda açık cam.
+Her zaman açık; metin ve denetimler siyah.
+Her zaman koyu; metin ve denetimler beyaz.
+Boşluk

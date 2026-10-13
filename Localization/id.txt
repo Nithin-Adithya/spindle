@@ -1,0 +1,99 @@
+Tidak ada yang diputar
+Buka Spotify atau Musik untuk memutar
+Musik dihentikan
+Widget desktop
+Tampilan notch
+Warna album
+Pengaturan…
+Keluar dari Spindle
+Pengaturan Spindle
+Umum
+Notch
+Widget
+Pintasan
+App
+Buka saat masuk
+Memulai Spindle saat Anda masuk ke Mac.
+Tampilkan di bar menu
+Ikon cakram yang membuka pemutar. Jika Anda menyembunyikannya, buka Spindle lagi dari Finder atau Spotlight untuk kembali ke pengaturan ini.
+Tampilkan ikon Dock
+Mati membuat Spindle tidak muncul di Dock dan pengalih app.
+Tampilkan sampul di Dock
+Menggunakan sampul saat ini sebagai ikon Dock.
+Musik
+Sumber musik
+Otomatis mengikuti layanan yang sedang memutar, Spotify atau Apple Music.
+Mati
+%lld menit
+Timer tidur
+Menjeda musik setelah waktu yang ditentukan.
+Menjeda musik dalam %d mnt.
+Tampilan
+Mewarnai popover dan widget dengan warna sampul. Mati menggunakan abu-abu gelap.
+Pil di bagian atas tengah layar yang menampilkan sampul dan batang. Arahkan penunjuk ke atasnya untuk membuka pemutar dengan kontrol.
+Sembunyikan saat layar penuh
+Menghapus pil selama app dalam mode layar penuh di layar tersebut.
+Gaya
+Gaya kaca memerlukan macOS 26 atau lebih baru.
+Kartu di desktop dengan piringan dan kontrol. Seret ke mana saja.
+Perilaku jendela
+Di bawah menjaganya tetap di desktop di bawah semuanya; di atas membuatnya mengambang di atas jendela lain.
+Tema
+Ukuran
+Font
+Warna judul
+Latar belakang
+Warna
+Tidak ada gambar dipilih
+Pilih…
+Bayangan
+Bayangan lembut di bawah widget. Latar belakang transparan tidak pernah memilikinya.
+Detail
+Tampilkan jarum
+Lengan pemutar yang berayun ke piringan saat musik diputar.
+Tampilkan progres
+Bar pencarian dan waktu.
+Desktop
+Sampul sebagai wallpaper
+Mengganti gambar desktop Anda dengan sampul saat ini di setiap layar. Gambar Anda kembali saat Anda mematikan ini atau keluar dari Spindle.
+Pintasan berfungsi di app mana pun. Klik salah satu, lalu tekan tombolnya; harus menyertakan ⌘, ⌥, atau ⌃. Tekan Delete untuk menghapus, Esc untuk membatalkan.
+Tidak dapat mengubah ini: %@
+Tekan tombol…
+Rekam
+Putar/jeda
+Lagu berikutnya
+Lagu sebelumnya
+Tampilkan atau sembunyikan popover
+Buka atau tutup notch
+Tampilkan atau sembunyikan ikon bar menu
+Sampul
+Pemutar piringan
+Ringkas
+Sampul sebagai sarung piringan dengan piringan yang bergeser keluar di sampingnya.
+Piringan utuh di atas pemutar dengan lengannya, detail lagu di bawahnya.
+Bar kecil dengan sampul, detail lagu, dan kontrol. Tanpa piringan.
+Kecil
+Sedang
+Besar
+Ekstra besar
+Sampul album
+Warna khusus
+Gambar khusus
+Transparan
+Standar
+Bulat
+Serif
+Monospasi
+Otomatis
+Di bawah semua jendela
+Seperti jendela biasa
+Di atas semua jendela
+Hitam
+Kaca (ikuti sistem)
+Kaca, terang
+Kaca, gelap
+Pil solid yang asli.
+Kaca gelap di Mode Gelap, kaca terang di Mode Terang.
+Selalu terang, dengan teks dan kontrol hitam.
+Selalu gelap, dengan teks dan kontrol putih.
+Spasi

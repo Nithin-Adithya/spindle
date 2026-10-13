@@ -1,0 +1,99 @@
+Nada em reprodução
+Abra o Spotify ou a Música para reproduzir
+A música está parada
+Widget da secretária
+Apresentação no notch
+Cor do álbum
+Definições…
+Sair do Spindle
+Definições do Spindle
+Geral
+Notch
+Widget
+Atalhos
+Aplicação
+Abrir ao iniciar sessão
+Inicia o Spindle quando inicia sessão no Mac.
+Mostrar na barra de menus
+O ícone de disco que abre o leitor. Se o ocultar, abra novamente o Spindle a partir do Finder ou do Spotlight para voltar a estas definições.
+Mostrar ícone na Dock
+Desativado mantém o Spindle fora da Dock e do seletor de aplicações.
+Mostrar capa na Dock
+Usa a capa atual como ícone da Dock.
+Música
+Origem da música
+Automático segue o serviço que estiver a tocar, Spotify ou Apple Music.
+Desativado
+%lld minutos
+Temporizador de suspensão
+Coloca a música em pausa após um tempo definido.
+Coloca a música em pausa dentro de %d min.
+Aspeto
+Tinge o popover e o widget com a cor da capa. Desativado usa cinzento-escuro.
+Uma pílula no centro superior do ecrã que mostra a capa e as barras. Passe o cursor por cima para abrir um leitor com controlos.
+Ocultar em ecrã completo
+Remove a pílula enquanto uma aplicação está em ecrã completo nesse ecrã.
+Estilo
+Os estilos de vidro requerem o macOS 26 ou posterior.
+Um cartão na secretária com o disco e os controlos. Arraste-o para qualquer lugar.
+Comportamento da janela
+Por baixo mantém-no na secretária sob tudo o resto; por cima fá-lo flutuar sobre as outras janelas.
+Tema
+Tamanho
+Tipo de letra
+Cor do título
+Fundo
+Cor
+Nenhuma imagem escolhida
+Escolher…
+Sombra
+Uma sombra suave sob o widget. Os fundos transparentes nunca têm sombra.
+Detalhes
+Mostrar agulha
+O braço que pousa sobre o disco enquanto a música toca.
+Mostrar progresso
+A barra de progresso e os tempos.
+Secretária
+Capa como papel de parede
+Substitui a imagem da secretária pela capa atual em todos os ecrãs. A sua imagem volta quando desativa esta opção ou sai do Spindle.
+Os atalhos funcionam em qualquer aplicação. Clique num e prima as teclas; têm de incluir ⌘, ⌥ ou ⌃. Prima Apagar para limpar, Esc para cancelar.
+Não foi possível alterar: %@
+Prima as teclas…
+Gravar
+Reproduzir/pausa
+Faixa seguinte
+Faixa anterior
+Mostrar ou ocultar popover
+Abrir ou fechar o notch
+Mostrar ou ocultar ícone da barra de menus
+Capa
+Gira-discos
+Compacto
+A capa como capa de disco, com o disco a sair pela lateral.
+Um disco inteiro num gira-discos com o braço, detalhes da faixa por baixo.
+Uma barra pequena com a capa, detalhes da faixa e controlos. Sem disco.
+Pequeno
+Médio
+Grande
+Muito grande
+Capa do álbum
+Cor personalizada
+Imagem personalizada
+Transparente
+Padrão
+Arredondado
+Com serifa
+Monoespaçado
+Automático
+Por baixo de todas as janelas
+Como uma janela normal
+Por cima de todas as janelas
+Preto
+Vidro (conforme o sistema)
+Vidro, claro
+Vidro, escuro
+A pílula sólida original.
+Vidro escuro no modo escuro, vidro claro no modo claro.
+Sempre claro, com texto e controlos pretos.
+Sempre escuro, com texto e controlos brancos.
+Espaço

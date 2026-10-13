@@ -1,0 +1,99 @@
+Nothing playing
+Open Spotify or Music to play
+Music is stopped
+Desktop widget
+Notch display
+Album color
+Settings…
+Quit Spindle
+Spindle Settings
+General
+Notch
+Widget
+Shortcuts
+App
+Launch at login
+Starts Spindle when you log in to your Mac.
+Show in menu bar
+The disc icon that opens the player. If you hide it, open Spindle again from Finder or Spotlight to get back to these settings.
+Show Dock icon
+Off keeps Spindle out of the Dock and the app switcher.
+Show artwork in Dock
+Uses the current cover as the Dock icon.
+Music
+Music source
+Automatic follows whichever of Spotify and Apple Music is playing.
+Off
+%lld minutes
+Sleep timer
+Pauses the music after a set time.
+Pauses the music in %d min.
+Appearance
+Tints the popover and widget with the cover's color. Off uses dark grey.
+A pill at the top centre of the screen showing the cover and bars. Hover it to open a player with controls.
+Hide in full screen
+Removes the pill while an app is full screen on that display.
+Style
+Glass styles need macOS 26 or later.
+A card on the desktop with the record and controls. Drag it anywhere.
+Window behavior
+Below keeps it on the desktop under everything; above floats it over other windows.
+Theme
+Size
+Font
+Title color
+Background
+Color
+No image chosen
+Choose…
+Shadow
+A soft shadow under the widget. Transparent backgrounds never have one.
+Details
+Show stylus
+The tonearm that swings onto the record while music plays.
+Show progress
+The seek bar and times.
+Desktop
+Cover art as wallpaper
+Replaces your desktop picture with the current cover on every display. Your own picture comes back when you turn this off or quit Spindle.
+Shortcuts work in any app. Click one, then press the keys; they must include ⌘, ⌥ or ⌃. Press Delete to clear, Esc to cancel.
+Could not change this: %@
+Press keys…
+Record
+Play/pause
+Next track
+Previous track
+Toggle popover
+Toggle notch open
+Toggle menu bar icon
+Sleeve
+Turntable
+Compact
+The cover as a record sleeve with the record sliding out beside it.
+A full record on a deck with the tonearm, track details underneath.
+A small bar with the cover, track details and controls. No record.
+Small
+Medium
+Large
+Extra large
+Album cover
+Custom color
+Custom image
+Transparent
+Standard
+Rounded
+Serif
+Monospaced
+Automatic
+Below all windows
+Like a normal window
+Above all windows
+Black
+Glass (match system)
+Glass, light
+Glass, dark
+The original solid pill.
+Dark glass in Dark Mode, light glass in Light Mode.
+Always light, with black text and controls.
+Always dark, with white text and controls.
+Space

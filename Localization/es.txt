@@ -1,0 +1,99 @@
+No se está reproduciendo nada
+Abre Spotify o Música para reproducir
+La música está detenida
+Widget de escritorio
+Mostrar en el notch
+Color del álbum
+Ajustes…
+Salir de Spindle
+Ajustes de Spindle
+General
+Notch
+Widget
+Atajos
+App
+Abrir al iniciar sesión
+Inicia Spindle cuando inicias sesión en tu Mac.
+Mostrar en la barra de menús
+El icono del disco que abre el reproductor. Si lo ocultas, vuelve a abrir Spindle desde el Finder o Spotlight para regresar a estos ajustes.
+Mostrar icono en el Dock
+Desactivado mantiene Spindle fuera del Dock y del selector de apps.
+Mostrar carátula en el Dock
+Usa la carátula actual como icono del Dock.
+Música
+Fuente de música
+Automático sigue al servicio que esté sonando, Spotify o Apple Music.
+Desactivado
+%lld minutos
+Temporizador de reposo
+Pausa la música después de un tiempo determinado.
+Pausa la música en %d min.
+Apariencia
+Tiñe el popover y el widget con el color de la carátula. Desactivado usa gris oscuro.
+Una píldora en la parte superior central de la pantalla con la carátula y las barras. Pasa el puntero por encima para abrir un reproductor con controles.
+Ocultar en pantalla completa
+Quita la píldora mientras una app está en pantalla completa en esa pantalla.
+Estilo
+Los estilos de cristal requieren macOS 26 o posterior.
+Una tarjeta en el escritorio con el disco y los controles. Arrástrala a cualquier lugar.
+Comportamiento de la ventana
+Debajo la mantiene en el escritorio bajo todo lo demás; encima la hace flotar sobre otras ventanas.
+Tema
+Tamaño
+Tipo de letra
+Color del título
+Fondo
+Color
+Ninguna imagen seleccionada
+Elegir…
+Sombra
+Una sombra suave bajo el widget. Los fondos transparentes nunca la tienen.
+Detalles
+Mostrar aguja
+El brazo que se posa sobre el disco mientras suena la música.
+Mostrar progreso
+La barra de progreso y los tiempos.
+Escritorio
+Carátula como fondo de pantalla
+Sustituye tu fondo de escritorio por la carátula actual en todas las pantallas. Tu imagen vuelve cuando desactivas esta opción o sales de Spindle.
+Los atajos funcionan en cualquier app. Haz clic en uno y pulsa las teclas; deben incluir ⌘, ⌥ o ⌃. Pulsa Suprimir para borrar, Esc para cancelar.
+No se pudo cambiar: %@
+Pulsa las teclas…
+Grabar
+Reproducir/pausar
+Pista siguiente
+Pista anterior
+Mostrar u ocultar popover
+Abrir o cerrar el notch
+Mostrar u ocultar icono de la barra de menús
+Funda
+Tocadiscos
+Compacto
+La carátula como funda de disco, con el disco asomando a un lado.
+Un disco completo sobre un plato con el brazo, y los detalles de la pista debajo.
+Una barra pequeña con la carátula, los detalles de la pista y los controles. Sin disco.
+Pequeño
+Mediano
+Grande
+Muy grande
+Carátula del álbum
+Color personalizado
+Imagen personalizada
+Transparente
+Estándar
+Redondeada
+Con serifa
+Monoespaciada
+Automático
+Debajo de todas las ventanas
+Como una ventana normal
+Encima de todas las ventanas
+Negro
+Cristal (según el sistema)
+Cristal, claro
+Cristal, oscuro
+La píldora sólida original.
+Cristal oscuro en modo oscuro, cristal claro en modo claro.
+Siempre claro, con texto y controles negros.
+Siempre oscuro, con texto y controles blancos.
+Espacio

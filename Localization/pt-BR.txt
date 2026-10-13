@@ -1,0 +1,99 @@
+Nada tocando
+Abra o Spotify ou o Música para reproduzir
+A música está parada
+Widget da mesa
+Exibição no notch
+Cor do álbum
+Ajustes…
+Encerrar Spindle
+Ajustes do Spindle
+Geral
+Notch
+Widget
+Atalhos
+App
+Abrir ao iniciar sessão
+Inicia o Spindle quando você inicia a sessão no Mac.
+Mostrar na barra de menus
+O ícone de disco que abre o player. Se você ocultá-lo, abra o Spindle novamente pelo Finder ou Spotlight para voltar a estes ajustes.
+Mostrar ícone no Dock
+Desativado mantém o Spindle fora do Dock e do seletor de apps.
+Mostrar capa no Dock
+Usa a capa atual como ícone do Dock.
+Música
+Fonte de música
+Automático segue o serviço que estiver tocando, Spotify ou Apple Music.
+Desativado
+%lld minutos
+Timer de repouso
+Pausa a música após um tempo definido.
+Pausa a música em %d min.
+Aparência
+Tinge o popover e o widget com a cor da capa. Desativado usa cinza-escuro.
+Uma pílula no centro superior da tela mostrando a capa e as barras. Passe o cursor sobre ela para abrir um player com controles.
+Ocultar em tela cheia
+Remove a pílula enquanto um app está em tela cheia naquela tela.
+Estilo
+Os estilos de vidro exigem o macOS 26 ou posterior.
+Um cartão na mesa com o disco e os controles. Arraste-o para qualquer lugar.
+Comportamento da janela
+Abaixo o mantém na mesa sob todo o resto; acima o faz flutuar sobre outras janelas.
+Tema
+Tamanho
+Fonte
+Cor do título
+Fundo
+Cor
+Nenhuma imagem escolhida
+Escolher…
+Sombra
+Uma sombra suave sob o widget. Fundos transparentes nunca têm sombra.
+Detalhes
+Mostrar agulha
+O braço que pousa sobre o disco enquanto a música toca.
+Mostrar progresso
+A barra de progresso e os tempos.
+Mesa
+Capa como imagem de fundo
+Substitui a imagem da sua mesa pela capa atual em todas as telas. Sua imagem volta quando você desativa esta opção ou encerra o Spindle.
+Os atalhos funcionam em qualquer app. Clique em um e pressione as teclas; elas devem incluir ⌘, ⌥ ou ⌃. Pressione Apagar para limpar, Esc para cancelar.
+Não foi possível alterar: %@
+Pressione as teclas…
+Gravar
+Reproduzir/pausar
+Próxima faixa
+Faixa anterior
+Mostrar ou ocultar popover
+Abrir ou fechar o notch
+Mostrar ou ocultar ícone da barra de menus
+Capa
+Toca-discos
+Compacto
+A capa como uma capa de disco, com o disco saindo pela lateral.
+Um disco inteiro em um toca-discos com o braço, detalhes da faixa abaixo.
+Uma barra pequena com a capa, detalhes da faixa e controles. Sem disco.
+Pequeno
+Médio
+Grande
+Extragrande
+Capa do álbum
+Cor personalizada
+Imagem personalizada
+Transparente
+Padrão
+Arredondada
+Serifada
+Monoespaçada
+Automático
+Abaixo de todas as janelas
+Como uma janela normal
+Acima de todas as janelas
+Preto
+Vidro (conforme o sistema)
+Vidro, claro
+Vidro, escuro
+A pílula sólida original.
+Vidro escuro no Modo Escuro, vidro claro no Modo Claro.
+Sempre claro, com texto e controles pretos.
+Sempre escuro, com texto e controles brancos.
+Espaço

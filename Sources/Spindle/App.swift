@@ -1,0 +1,286 @@
+import AppKit
+import Combine
+import SwiftUI
+
+@main
+enum Main {
+    static func main() {
+        let app = SpindleApplication.shared
+        let delegate = AppDelegate()
+        app.delegate = delegate
+        app.setActivationPolicy(.accessory)
+        app.run()
+    }
+}
+
+/// AppKit asks the application which way its interface runs, and that answer
+/// drives tab bars, scrollers and title bars that SwiftUI's environment can't reach.
+final class SpindleApplication: NSApplication {
+    override var userInterfaceLayoutDirection: NSUserInterfaceLayoutDirection {
+        appLayoutDirection == .rightToLeft ? .rightToLeft : .leftToRight
+    }
+}
+
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    private let model = MusicViewModel()
+    private let settings = Settings.shared
+    private var statusItem: NSStatusItem!
+    private let popover = NSPopover()
+    private var widget: NSPanel?
+    private var widgetLayout = ""
+    private let wallpaper = WallpaperManager()
+    private var notch: NSPanel?
+    private var notchWatchdog: Timer?
+    private var notchState: NotchState?
+    private var settingsWindow: NSWindow?
+    private var subscriptions = Set<AnyCancellable>()
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        statusItem.button?.image = NSImage(systemSymbolName: "opticaldisc", accessibilityDescription: "Spindle")
+        statusItem.button?.target = self
+        statusItem.button?.action = #selector(togglePopover)
+
+        popover.behavior = .transient
+        let card = NSHostingController(rootView: PlayerCardView(model: model).environment(\.layoutDirection, appLayoutDirection))
+        // Without a size up front the popover is placed as if empty and its top lands off-screen.
+        card.sizingOptions = .preferredContentSize
+        popover.contentViewController = card
+        popover.contentSize = card.view.fittingSize
+
+        settings.openWindow = { [weak self] in self?.showSettings() }
+        // The change is announced before it lands, so apply on the next turn of the run loop.
+        settings.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in self?.applySettings() }
+            .store(in: &subscriptions)
+        model.$artwork.sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.applyDockIcon()
+                self?.applyWallpaper()
+            }
+        }
+        .store(in: &subscriptions)
+        HotKeyCenter.shared.handler = { [weak self] in self?.perform($0) }
+        applySettings()
+
+        NotificationCenter.default.addObserver(
+            forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main
+        ) { [weak self] _ in
+            guard let self, self.notch != nil else { return }
+            self.setNotch(visible: false)
+            self.setNotch(visible: true)
+        }
+    }
+
+    /// Opening the app again is the way back in when both the menu bar icon and the Dock icon are hidden.
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows: Bool) -> Bool {
+        showSettings()
+        return true
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        wallpaper.restore()
+    }
+
+    private func applyWallpaper() {
+        wallpaper.update(enabled: settings.coverAsWallpaper, artwork: model.artwork,
+                         trackID: model.track.map { "\($0.source.rawValue)-\($0.id)" })
+    }
+
+    private func applySettings() {
+        statusItem.isVisible = settings.showMenuBarIcon
+        let policy: NSApplication.ActivationPolicy = settings.showDockIcon ? .regular : .accessory
+        if NSApp.activationPolicy() != policy { NSApp.setActivationPolicy(policy) }
+        applyDockIcon()
+        setWidget(visible: settings.showWidget)
+        widget?.level = settings.widgetLevel.windowLevel
+        let shadow = settings.widgetShadow && settings.widgetBackground != .transparent
+        if widget?.hasShadow != shadow { widget?.hasShadow = shadow }
+        widget?.invalidateShadow()
+        applyWallpaper()
+        setNotch(visible: settings.showNotch)
+    }
+
+    private func applyDockIcon() {
+        guard settings.showDockIcon, settings.artworkInDock, let artwork = model.artwork else {
+            NSApp.applicationIconImage = nil
+            return
+        }
+        // Dock icons are drawn inset with rounded corners; a bare square cover looks oversized.
+        let size = NSSize(width: 256, height: 256)
+        NSApp.applicationIconImage = NSImage(size: size, flipped: false) { rect in
+            let inset = rect.insetBy(dx: 24, dy: 24)
+            NSBezierPath(roundedRect: inset, xRadius: 44, yRadius: 44).addClip()
+            artwork.draw(in: inset)
+            return true
+        }
+    }
+
+    private func perform(_ action: HotKeyAction) {
+        switch action {
+        case .playPause: model.playPause()
+        case .next: model.next()
+        case .previous: model.previous()
+        case .togglePopover: togglePopover()
+        case .toggleNotch: notchState?.pinned.toggle()
+        case .toggleMenuBarIcon: settings.showMenuBarIcon.toggle()
+        }
+    }
+
+    private func showSettings() {
+        popover.performClose(nil)
+        if settingsWindow == nil {
+            let window = NSWindow(contentViewController: NSHostingController(rootView: SettingsView(model: model).environment(\.layoutDirection, appLayoutDirection)))
+            window.title = L("Spindle Settings")
+            window.styleMask = [.titled, .closable]
+            window.isReleasedWhenClosed = false
+            window.center()
+            settingsWindow = window
+        }
+        // A menu-bar app is never frontmost by itself, so the window would open behind others.
+        NSApp.activate(ignoringOtherApps: true)
+        settingsWindow?.makeKeyAndOrderFront(nil)
+    }
+
+    @objc private func togglePopover() {
+        guard let button = statusItem.button else { return }
+        if popover.isShown {
+            popover.performClose(nil)
+        } else {
+            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+            popover.contentViewController?.view.window?.makeKey()
+        }
+    }
+
+    private func makePanel<Content: View>(_ content: Content) -> NSPanel {
+        let panel = NSPanel(contentRect: .zero, styleMask: [.borderless, .nonactivatingPanel],
+                            backing: .buffered, defer: false)
+        panel.isOpaque = false
+        panel.backgroundColor = .clear
+        panel.hidesOnDeactivate = false
+        panel.collectionBehavior = [.canJoinAllSpaces, .stationary, .fullScreenAuxiliary]
+        // The widget and the notch are pictures of physical things and keep their direction.
+        panel.contentView = NSHostingView(rootView: content.environment(\.layoutDirection, .leftToRight))
+        return panel
+    }
+
+    private func setWidget(visible: Bool) {
+        guard visible else {
+            widget?.close()
+            widget = nil
+            return
+        }
+        // The theme and size decide the window's size, so a change means resizing in place.
+        let layout = settings.widgetTheme.rawValue + settings.widgetSize.rawValue
+        let size = WidgetView.size(for: settings)
+        if let widget {
+            guard layout != widgetLayout else { return }
+            widgetLayout = layout
+            let top = widget.frame.maxY
+            widget.setFrame(NSRect(x: widget.frame.minX, y: top - size.height, width: size.width, height: size.height),
+                            display: true)
+            return
+        }
+        widgetLayout = layout
+        let panel = makePanel(WidgetView(model: model))
+        panel.isMovableByWindowBackground = true
+        panel.level = settings.widgetLevel.windowLevel
+        // Remember where the top-left corner was dragged to; the size comes from the theme.
+        panel.setContentSize(size)
+        let saved = (UserDefaults.standard.string(forKey: "widgetTopLeft") ?? "").split(separator: ",").compactMap { Double($0) }
+        if saved.count == 2 {
+            panel.setFrameTopLeftPoint(NSPoint(x: saved[0], y: saved[1]))
+        }
+        // A saved spot can end up off every display (unplugged monitor, bigger theme); start over then.
+        if saved.count != 2 || !NSScreen.screens.contains(where: { $0.visibleFrame.insetBy(dx: 40, dy: 40).intersects(panel.frame) }) {
+            panel.center()
+        }
+        NotificationCenter.default.addObserver(forName: NSWindow.didMoveNotification, object: panel, queue: .main) { _ in
+            UserDefaults.standard.set("\(panel.frame.minX),\(panel.frame.maxY)", forKey: "widgetTopLeft")
+        }
+        panel.orderFrontRegardless()
+        widget = panel
+    }
+
+    /// A full-screen space takes the menu bar's window off screen. The screen's
+    /// own visible frame can't be used for this: it keeps reporting the bar's height.
+    private static func menuBarIsOnScreen() -> Bool {
+        let level = Int(CGWindowLevelForKey(.mainMenuWindow))
+        let windows = CGWindowListCopyWindowInfo([.optionOnScreenOnly], kCGNullWindowID) as? [[String: Any]] ?? []
+        return windows.contains {
+            $0[kCGWindowLayer as String] as? Int == level && $0[kCGWindowOwnerName as String] as? String == "Window Server"
+        }
+    }
+
+    private func setNotch(visible: Bool) {
+        guard visible, let screen = NSScreen.main else {
+            notchWatchdog?.invalidate()
+            notch?.close()
+            notch = nil
+            notchState = nil
+            return
+        }
+        guard notch == nil else { return }
+
+        // Screens without a camera housing get a pill of the same size instead.
+        var notchWidth = 180.0
+        var hasNotch = false
+        // Match the menu bar exactly so the pill never hangs over the window below it.
+        var height = screen.frame.maxY - screen.visibleFrame.maxY
+        if height <= 0 { height = NSStatusBar.system.thickness }
+        if let left = screen.auxiliaryTopLeftArea, let right = screen.auxiliaryTopRightArea,
+           screen.safeAreaInsets.top > 0 {
+            notchWidth = screen.frame.width - left.width - right.width
+            height = screen.safeAreaInsets.top
+            hasNotch = true
+        }
+        let collapsed = CGSize(width: notchWidth + NotchView.wing * 2, height: height)
+        let expanded = NotchView.expandedSize(notchWidth: notchWidth, collapsedHeight: height, hasNotch: hasNotch)
+        func frame(_ size: CGSize) -> NSRect {
+            NSRect(x: screen.frame.midX - size.width / 2, y: screen.frame.maxY - size.height,
+                   width: size.width, height: size.height)
+        }
+
+        let state = NotchState()
+        let panel = makePanel(NotchView(model: model, state: state, notchWidth: notchWidth, collapsedHeight: height,
+                                        hasNotch: hasNotch))
+        panel.hasShadow = false
+        panel.level = .statusBar + 1
+        // The window stays at its expanded size and only the view inside animates:
+        // resizing the window on hover made the open animation snap. While collapsed
+        // it ignores the mouse so the transparent area doesn't block what's beneath.
+        panel.setFrame(frame(expanded), display: true)
+        panel.ignoresMouseEvents = true
+
+        // Hover tracking can't see through a window that ignores the mouse, so watch the pointer.
+        var lastInside = Date.distantPast
+        var tick = 0
+        var fullScreen = false
+        notchState = state
+        let watchdog = Timer(timeInterval: 1.0 / 30, repeats: true) { [weak self] _ in
+            let pointer = NSEvent.mouseLocation
+            // At the very top the pointer sits exactly on the screen's upper edge,
+            // which a rect excludes, so let the region reach past it.
+            var region = frame(state.expanded ? expanded : collapsed)
+            region.size.height += 50
+            guard let self else { return }
+
+            // Listing windows is too costly for every tick; twice a second is plenty.
+            tick += 1
+            if tick % 15 == 0 { fullScreen = !Self.menuBarIsOnScreen() }
+            let hidden = fullScreen && self.settings.hideNotchInFullScreen
+            if hidden == panel.isVisible { hidden ? panel.orderOut(nil) : panel.orderFrontRegardless() }
+
+            let inside = !hidden && self.model.track != nil && (region.contains(pointer) || state.pinned)
+            if inside { lastInside = Date() }
+            // Leaving has to last a moment so skimming the edge doesn't flicker it shut.
+            let open = inside || (state.expanded && Date().timeIntervalSince(lastInside) < 0.15)
+            guard state.expanded != open else { return }
+            panel.ignoresMouseEvents = !open
+            withAnimation(.spring(duration: 0.3)) { state.expanded = open }
+        }
+        RunLoop.main.add(watchdog, forMode: .common)  // keeps running while a slider is dragged
+        notchWatchdog = watchdog
+        panel.orderFrontRegardless()
+        notch = panel
+    }
+}

@@ -1,0 +1,99 @@
+Aucune lecture en cours
+Ouvrez Spotify ou Musique pour lancer la lecture
+La musique est arrêtée
+Widget de bureau
+Affichage dans l’encoche
+Couleur de l’album
+Réglages…
+Quitter Spindle
+Réglages de Spindle
+Général
+Encoche
+Widget
+Raccourcis
+App
+Ouvrir à la connexion
+Lance Spindle à l’ouverture de votre session sur le Mac.
+Afficher dans la barre des menus
+L’icône de disque qui ouvre le lecteur. Si vous la masquez, rouvrez Spindle depuis le Finder ou Spotlight pour revenir à ces réglages.
+Afficher l’icône dans le Dock
+Désactivé, Spindle n’apparaît ni dans le Dock ni dans le sélecteur d’apps.
+Afficher la pochette dans le Dock
+Utilise la pochette en cours comme icône du Dock.
+Musique
+Source musicale
+Automatique suit le service en cours de lecture, Spotify ou Apple Music.
+Désactivé
+%lld minutes
+Minuteur de sommeil
+Met la musique en pause après une durée définie.
+Met la musique en pause dans %d min.
+Apparence
+Teinte le popover et le widget avec la couleur de la pochette. Désactivé, le gris foncé est utilisé.
+Une pilule en haut au centre de l’écran affichant la pochette et les barres. Survolez-la pour ouvrir un lecteur avec des commandes.
+Masquer en plein écran
+Retire la pilule lorsqu’une app est en plein écran sur cet écran.
+Style
+Les styles verre nécessitent macOS 26 ou ultérieur.
+Une carte sur le bureau avec le disque et les commandes. Faites-la glisser où vous voulez.
+Comportement de la fenêtre
+En dessous, elle reste sur le bureau sous tout le reste ; au-dessus, elle flotte par-dessus les autres fenêtres.
+Thème
+Taille
+Police
+Couleur du titre
+Arrière-plan
+Couleur
+Aucune image choisie
+Choisir…
+Ombre
+Une ombre douce sous le widget. Les arrière-plans transparents n’en ont jamais.
+Détails
+Afficher le bras
+Le bras de lecture qui se pose sur le disque pendant la lecture.
+Afficher la progression
+La barre de lecture et les durées.
+Bureau
+Pochette en fond d’écran
+Remplace votre fond d’écran par la pochette en cours sur tous les écrans. Votre image revient lorsque vous désactivez cette option ou quittez Spindle.
+Les raccourcis fonctionnent dans toutes les apps. Cliquez sur l’un d’eux, puis appuyez sur les touches ; elles doivent inclure ⌘, ⌥ ou ⌃. Appuyez sur Suppr pour effacer, Échap pour annuler.
+Modification impossible : %@
+Appuyez sur les touches…
+Enregistrer
+Lecture/pause
+Piste suivante
+Piste précédente
+Afficher ou masquer le popover
+Ouvrir ou fermer l’encoche
+Afficher ou masquer l’icône de la barre des menus
+Pochette
+Platine
+Compact
+La pochette comme étui de disque, avec le disque qui en sort sur le côté.
+Un disque entier sur une platine avec le bras, les détails de la piste en dessous.
+Une petite barre avec la pochette, les détails de la piste et les commandes. Sans disque.
+Petit
+Moyen
+Grand
+Très grand
+Pochette de l’album
+Couleur personnalisée
+Image personnalisée
+Transparent
+Standard
+Arrondie
+Avec empattement
+À chasse fixe
+Automatique
+Sous toutes les fenêtres
+Comme une fenêtre normale
+Au-dessus de toutes les fenêtres
+Noir
+Verre (selon le système)
+Verre, clair
+Verre, sombre
+La pilule unie d’origine.
+Verre sombre en mode sombre, verre clair en mode clair.
+Toujours clair, avec texte et commandes noirs.
+Toujours sombre, avec texte et commandes blancs.
+Espace

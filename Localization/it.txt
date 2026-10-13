@@ -1,0 +1,99 @@
+Nessuna riproduzione
+Apri Spotify o Musica per riprodurre
+La musica è ferma
+Widget sulla scrivania
+Mostra nel notch
+Colore dell’album
+Impostazioni…
+Esci da Spindle
+Impostazioni di Spindle
+Generali
+Notch
+Widget
+Abbreviazioni
+App
+Apri al login
+Avvia Spindle quando accedi al Mac.
+Mostra nella barra dei menu
+L’icona del disco che apre il player. Se la nascondi, riapri Spindle dal Finder o da Spotlight per tornare a queste impostazioni.
+Mostra icona nel Dock
+Disattivato tiene Spindle fuori dal Dock e dal selettore delle app.
+Mostra copertina nel Dock
+Usa la copertina attuale come icona del Dock.
+Musica
+Sorgente musicale
+Automatico segue il servizio in riproduzione, Spotify o Apple Music.
+Disattivato
+%lld minuti
+Timer di spegnimento
+Mette in pausa la musica dopo un tempo stabilito.
+Mette in pausa la musica tra %d min.
+Aspetto
+Colora il popover e il widget con il colore della copertina. Disattivato usa il grigio scuro.
+Una pillola in alto al centro dello schermo con la copertina e le barre. Passaci sopra con il puntatore per aprire un player con i controlli.
+Nascondi a tutto schermo
+Rimuove la pillola mentre un’app è a tutto schermo su quello schermo.
+Stile
+Gli stili vetro richiedono macOS 26 o versioni successive.
+Una scheda sulla scrivania con il disco e i controlli. Trascinala dove vuoi.
+Comportamento della finestra
+Sotto la tiene sulla scrivania sotto tutto il resto; sopra la fa fluttuare sulle altre finestre.
+Tema
+Dimensione
+Font
+Colore del titolo
+Sfondo
+Colore
+Nessuna immagine scelta
+Scegli…
+Ombra
+Un’ombra morbida sotto il widget. Gli sfondi trasparenti non ne hanno mai.
+Dettagli
+Mostra puntina
+Il braccio che si posa sul disco mentre la musica suona.
+Mostra avanzamento
+La barra di avanzamento e i tempi.
+Scrivania
+Copertina come sfondo
+Sostituisce lo sfondo della scrivania con la copertina attuale su ogni schermo. La tua immagine torna quando disattivi questa opzione o esci da Spindle.
+Le abbreviazioni funzionano in qualsiasi app. Fai clic su una e premi i tasti; devono includere ⌘, ⌥ o ⌃. Premi Cancella per rimuovere, Esc per annullare.
+Impossibile modificare: %@
+Premi i tasti…
+Registra
+Riproduci/pausa
+Brano successivo
+Brano precedente
+Mostra o nascondi popover
+Apri o chiudi il notch
+Mostra o nascondi icona nella barra dei menu
+Custodia
+Giradischi
+Compatto
+La copertina come custodia del disco, con il disco che esce di lato.
+Un disco intero su un giradischi con il braccio, i dettagli del brano sotto.
+Una piccola barra con copertina, dettagli del brano e controlli. Senza disco.
+Piccolo
+Medio
+Grande
+Molto grande
+Copertina dell’album
+Colore personalizzato
+Immagine personalizzata
+Trasparente
+Standard
+Arrotondato
+Con grazie
+Monospaziato
+Automatico
+Sotto tutte le finestre
+Come una finestra normale
+Sopra tutte le finestre
+Nero
+Vetro (come il sistema)
+Vetro, chiaro
+Vetro, scuro
+La pillola piena originale.
+Vetro scuro in modalità scura, vetro chiaro in modalità chiara.
+Sempre chiaro, con testo e controlli neri.
+Sempre scuro, con testo e controlli bianchi.
+Spazio

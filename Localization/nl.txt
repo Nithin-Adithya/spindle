@@ -1,0 +1,99 @@
+Er speelt niets
+Open Spotify of Muziek om af te spelen
+Muziek is gestopt
+Bureaubladwidget
+Notch-weergave
+Albumkleur
+Instellingen…
+Stop Spindle
+Spindle-instellingen
+Algemeen
+Notch
+Widget
+Toetscombinaties
+App
+Open bij inloggen
+Start Spindle wanneer je inlogt op je Mac.
+Toon in menubalk
+Het schijfsymbool dat de speler opent. Als je het verbergt, open Spindle dan opnieuw via Finder of Spotlight om terug te keren naar deze instellingen.
+Toon Dock-symbool
+Uit houdt Spindle buiten het Dock en de appkiezer.
+Toon albumhoes in Dock
+Gebruikt de huidige hoes als Dock-symbool.
+Muziek
+Muziekbron
+Automatisch volgt de dienst die afspeelt, Spotify of Apple Music.
+Uit
+%lld minuten
+Sluimertimer
+Pauzeert de muziek na een ingestelde tijd.
+Pauzeert de muziek over %d min.
+Weergave
+Kleurt de popover en widget met de kleur van de hoes. Uit gebruikt donkergrijs.
+Een pil bovenaan in het midden van het scherm met de hoes en balkjes. Houd de aanwijzer erboven om een speler met bediening te openen.
+Verberg in schermvullende weergave
+Verwijdert de pil zolang een app schermvullend is op dat beeldscherm.
+Stijl
+Glasstijlen vereisen macOS 26 of nieuwer.
+Een kaart op het bureaublad met de plaat en bediening. Sleep hem waarheen je wilt.
+Venstergedrag
+Onder houdt hem op het bureaublad onder alles; boven laat hem boven andere vensters zweven.
+Thema
+Grootte
+Lettertype
+Titelkleur
+Achtergrond
+Kleur
+Geen afbeelding gekozen
+Kies…
+Schaduw
+Een zachte schaduw onder de widget. Transparante achtergronden hebben er nooit een.
+Details
+Toon naald
+De toonarm die op de plaat zwenkt terwijl er muziek speelt.
+Toon voortgang
+De zoekbalk en de tijden.
+Bureaublad
+Albumhoes als achtergrond
+Vervangt je bureaubladafbeelding op elk beeldscherm door de huidige hoes. Je eigen afbeelding komt terug wanneer je dit uitzet of Spindle stopt.
+Toetscombinaties werken in elke app. Klik op een ervan en druk op de toetsen; ze moeten ⌘, ⌥ of ⌃ bevatten. Druk op Delete om te wissen, Esc om te annuleren.
+Kon dit niet wijzigen: %@
+Druk op toetsen…
+Neem op
+Speel af/pauzeer
+Volgend nummer
+Vorig nummer
+Toon of verberg popover
+Open of sluit notch
+Toon of verberg menubalksymbool
+Hoes
+Platenspeler
+Compact
+De hoes als platenhoes, met de plaat die er aan de zijkant uit schuift.
+Een hele plaat op een draaitafel met de toonarm, nummerdetails eronder.
+Een kleine balk met de hoes, nummerdetails en bediening. Geen plaat.
+Klein
+Normaal
+Groot
+Extra groot
+Albumhoes
+Aangepaste kleur
+Aangepaste afbeelding
+Transparant
+Standaard
+Afgerond
+Schreef
+Niet-proportioneel
+Automatisch
+Onder alle vensters
+Als een normaal venster
+Boven alle vensters
+Zwart
+Glas (volg systeem)
+Glas, licht
+Glas, donker
+De oorspronkelijke effen pil.
+Donker glas in de donkere modus, licht glas in de lichte modus.
+Altijd licht, met zwarte tekst en bediening.
+Altijd donker, met witte tekst en bediening.
+Spatie

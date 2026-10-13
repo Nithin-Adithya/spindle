@@ -114,7 +114,6 @@ Taille du lecteur
 Taille du titre
 Taille du sous-titre
 Services de musique pris en charge
-Spotify et Apple Music, via leurs apps Mac. La musique lue dans un navigateur n’est pas encore prise en charge.
 Autorisation
 La première fois qu’un lecteur est ouvert, macOS demande si Spindle peut le contrôler. Choisissez Autoriser. Si vous avez choisi Ne pas autoriser, réactivez-le dans Confidentialité et sécurité, Automatisation.
 Ouvrir les réglages Automatisation
@@ -122,3 +121,19 @@ Astuces
 Survolez la pilule en haut de l’écran pour l’ouvrir, et éloignez le pointeur pour la fermer.
 Faites glisser le widget de bureau où vous voulez ; il se souvient de son emplacement.
 Cliquez sur le disque dans la barre des menus pour le lecteur, ou rouvrez Spindle pour la fenêtre complète.
+Musique dans les navigateurs
+Suit les sites de musique dans Safari et les navigateurs basés sur Chrome. Chaque navigateur demande l’autorisation une fois et nécessite d’activer Autoriser JavaScript à partir d’Apple Events dans son menu Développement ou Développeur.
+Activez Autoriser JavaScript à partir d’Apple Events dans : %@
+Navigateur
+Style du bras
+Classique
+Fin
+Coudé
+Fenêtre du lecteur transparente
+Affiche la fenêtre principale en verre dépoli au lieu de la couleur de l’album.
+Afficher sur tous les écrans
+Place la pilule et le fond d’écran de la pochette sur chaque écran. Désactivé, seul l’écran principal est utilisé.
+Spotify et Apple Music via leurs apps Mac, ainsi que des sites de musique comme YouTube Music, Spotify et SoundCloud dans un navigateur lorsque Musique dans les navigateurs est activé.
+À propos
+Version %@
+Une platine dans la barre des menus pour Spotify, Apple Music et les sites de musique.

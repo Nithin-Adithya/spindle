@@ -114,7 +114,6 @@ Player-Größe
 Titelgröße
 Untertitelgröße
 Unterstützte Musikdienste
-Spotify und Apple Music über ihre Mac-Apps. Musik, die in einem Browser läuft, wird noch nicht unterstützt.
 Berechtigung
 Wenn zum ersten Mal ein Player geöffnet ist, fragt macOS, ob Spindle ihn steuern darf. Wähle „Erlauben“. Falls du „Nicht erlauben“ gewählt hast, aktiviere es wieder unter „Datenschutz & Sicherheit“ > „Automation“.
 Automation-Einstellungen öffnen
@@ -122,3 +121,19 @@ Tipps
 Bewege den Zeiger auf die Pille oben am Bildschirm, um sie zu öffnen, und davon weg, um sie zu schließen.
 Ziehe das Schreibtisch-Widget an eine beliebige Stelle; es merkt sich die Position.
 Klicke auf die Platte in der Menüleiste für den Player oder öffne Spindle erneut für das große Fenster.
+Musik in Browsern
+Folgt Musikseiten in Safari und Chrome-basierten Browsern. Jeder Browser fragt einmal um Erlaubnis und benötigt die Option „JavaScript von Apple Events erlauben“ in seinem Entwickler-Menü.
+Aktiviere „JavaScript von Apple Events erlauben“ in: %@
+Browser
+Tonarm-Stil
+Klassisch
+Schlank
+Gewinkelt
+Transparentes Player-Fenster
+Zeigt das Hauptfenster als Milchglas statt in der Albumfarbe.
+Auf allen Bildschirmen anzeigen
+Zeigt die Pille und das Cover-Hintergrundbild auf jedem Bildschirm. Aus verwendet nur den Hauptbildschirm.
+Spotify und Apple Music über ihre Mac-Apps sowie Musikseiten wie YouTube Music, Spotify und SoundCloud im Browser, wenn „Musik in Browsern“ aktiviert ist.
+Über
+Version %@
+Ein Plattenspieler in der Menüleiste für Spotify, Apple Music und Musikseiten.

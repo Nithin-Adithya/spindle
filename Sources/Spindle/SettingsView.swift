@@ -9,14 +9,15 @@ struct SettingsView: View {
     @ObservedObject var hotKeys = HotKeyCenter.shared
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
     @State private var loginError: String?
+    @State private var tab = Settings.shared.initialTab
 
     var body: some View {
-        TabView {
-            Form { general }.formStyle(.grouped).tabItem { Label("General", systemImage: "gearshape") }
-            Form { notch }.formStyle(.grouped).tabItem { Label("Notch", systemImage: "capsule.tophalf.filled") }
-            Form { widget }.formStyle(.grouped).tabItem { Label("Widget", systemImage: "rectangle.on.rectangle") }
-            Form { shortcuts }.formStyle(.grouped).tabItem { Label("Shortcuts", systemImage: "keyboard") }
-            Form { guide }.formStyle(.grouped).tabItem { Label("Guide", systemImage: "questionmark.circle") }
+        TabView(selection: $tab) {
+            Form { general }.formStyle(.grouped).tabItem { Label("General", systemImage: "gearshape") }.tag(SettingsTab.general)
+            Form { notch }.formStyle(.grouped).tabItem { Label("Notch", systemImage: "capsule.tophalf.filled") }.tag(SettingsTab.notch)
+            Form { widget }.formStyle(.grouped).tabItem { Label("Widget", systemImage: "rectangle.on.rectangle") }.tag(SettingsTab.widget)
+            Form { shortcuts }.formStyle(.grouped).tabItem { Label("Shortcuts", systemImage: "keyboard") }.tag(SettingsTab.shortcuts)
+            Form { guide }.formStyle(.grouped).tabItem { Label("Guide", systemImage: "questionmark.circle") }.tag(SettingsTab.guide)
         }
         .frame(width: 540, height: 540)
     }
@@ -40,6 +41,16 @@ struct SettingsView: View {
                 Text("Music source")
                 Text("Automatic follows whichever of Spotify and Apple Music is playing.")
             }
+            Toggle(isOn: $settings.browserPlayback) {
+                Text("Music in browsers")
+                Text(L("Follows music sites in Safari and Chrome-family browsers. Each browser asks for permission once "
+                    + "and needs Allow JavaScript from Apple Events turned on in its Develop or Developer menu."))
+                if settings.browserPlayback, !model.blockedBrowsers.isEmpty {
+                    Text(String(format: L("Turn on Allow JavaScript from Apple Events in: %@"),
+                                model.blockedBrowsers.joined(separator: ", ")))
+                        .foregroundStyle(.orange)
+                }
+            }
             row("Show time remaining", "The time on the right of the seek bar counts down instead of showing the track's length.",
                 isOn: $settings.timeCountsDown)
             Picker(selection: Binding(get: { sleepMinutes }, set: setSleep)) {
@@ -56,9 +67,16 @@ struct SettingsView: View {
             Picker("Record style", selection: $settings.vinylStyle) {
                 ForEach(VinylStyle.allCases) { Text($0.label).tag($0) }
             }
+            Picker("Tonearm style", selection: $settings.stylusStyle) {
+                ForEach(StylusStyle.allCases) { Text($0.label).tag($0) }
+            }
             Picker("Player size", selection: $settings.playerSize) {
                 ForEach(WidgetSize.allCases) { Text($0.label).tag($0) }
             }
+            row("Transparent player window", "Shows the main window as frosted glass instead of the album color.",
+                isOn: $settings.transparentPlayer)
+            row("Show on all displays", "Puts the pill and the cover wallpaper on every display. Off uses the main display only.",
+                isOn: $settings.allDisplays)
         }
     }
 
@@ -138,7 +156,8 @@ struct SettingsView: View {
 
     @ViewBuilder private var guide: some View {
         Section("Supported music services") {
-            Text(L("Spotify and Apple Music, through their Mac apps. Music playing in a browser is not supported yet."))
+            Text(L("Spotify and Apple Music through their Mac apps, and music sites such as YouTube Music, Spotify "
+                + "and SoundCloud in a browser when Music in browsers is on."))
         }
         Section("Permission") {
             Text(L("The first time a player is open, macOS asks whether Spindle may control it. Choose Allow. "
@@ -153,6 +172,12 @@ struct SettingsView: View {
             Text(L("Hover the pill at the top of the screen to open it, and move away to close it."))
             Text(L("Drag the desktop widget anywhere; it remembers where you left it."))
             Text(L("Click the disc in the menu bar for the player, or open Spindle again for the full window."))
+        }
+        Section("About") {
+            LabeledContent("Spindle") {
+                Text(String(format: L("Version %@"), Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "–"))
+            }
+            Text(L("A menu-bar record player for Spotify, Apple Music and music sites."))
         }
     }
 

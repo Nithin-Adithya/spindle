@@ -114,7 +114,6 @@ Dimensione del player
 Dimensione del titolo
 Dimensione del sottotitolo
 Servizi musicali supportati
-Spotify e Apple Music, tramite le loro app per Mac. La musica riprodotta in un browser non è ancora supportata.
 Autorizzazione
 La prima volta che un player è aperto, macOS chiede se Spindle può controllarlo. Scegli Consenti. Se hai scelto Non consentire, riattivalo in Privacy e sicurezza, Automazione.
 Apri impostazioni Automazione
@@ -122,3 +121,19 @@ Suggerimenti
 Passa il puntatore sulla pillola in alto sullo schermo per aprirla e allontanalo per chiuderla.
 Trascina il widget della scrivania dove vuoi; ricorda dove l’hai lasciato.
 Fai clic sul disco nella barra dei menu per il player, oppure riapri Spindle per la finestra completa.
+Musica nei browser
+Segue i siti musicali in Safari e nei browser basati su Chrome. Ogni browser chiede l’autorizzazione una volta e richiede di attivare Consenti JavaScript da Apple Events nel menu Sviluppo o Sviluppatore.
+Attiva Consenti JavaScript da Apple Events in: %@
+Browser
+Stile del braccio
+Classico
+Sottile
+Angolato
+Finestra del player trasparente
+Mostra la finestra principale come vetro smerigliato invece del colore dell’album.
+Mostra su tutti gli schermi
+Mette la pillola e lo sfondo con la copertina su ogni schermo. Disattivato usa solo lo schermo principale.
+Spotify e Apple Music tramite le loro app per Mac, e siti musicali come YouTube Music, Spotify e SoundCloud in un browser quando Musica nei browser è attivo.
+Informazioni
+Versione %@
+Un giradischi nella barra dei menu per Spotify, Apple Music e siti musicali.

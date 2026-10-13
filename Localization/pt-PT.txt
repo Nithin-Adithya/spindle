@@ -114,7 +114,6 @@ Tamanho do leitor
 Tamanho do título
 Tamanho do subtítulo
 Serviços de música suportados
-Spotify e Apple Music, através das respetivas aplicações para Mac. A música a tocar num navegador ainda não é suportada.
 Permissão
 Da primeira vez que um leitor está aberto, o macOS pergunta se o Spindle o pode controlar. Escolha Permitir. Se escolheu Não permitir, volte a ativar em Privacidade e segurança, Automatização.
 Abrir definições de Automatização
@@ -122,3 +121,19 @@ Dicas
 Passe o cursor sobre a pílula no topo do ecrã para a abrir e afaste-o para a fechar.
 Arraste o widget da secretária para qualquer lugar; ele lembra-se de onde o deixou.
 Clique no disco na barra de menus para o leitor, ou abra novamente o Spindle para a janela completa.
+Música em navegadores
+Segue sites de música no Safari e em navegadores baseados no Chrome. Cada navegador pede permissão uma vez e precisa de Permitir JavaScript de Eventos Apple ativado no menu Programação ou Programador.
+Ative Permitir JavaScript de Eventos Apple em: %@
+Navegador
+Estilo do braço
+Clássico
+Fino
+Angulado
+Janela do leitor transparente
+Mostra a janela principal como vidro fosco em vez da cor do álbum.
+Mostrar em todos os ecrãs
+Coloca a pílula e o papel de parede da capa em todos os ecrãs. Desativado usa apenas o ecrã principal.
+Spotify e Apple Music através das respetivas aplicações para Mac, e sites de música como YouTube Music, Spotify e SoundCloud num navegador quando Música em navegadores está ativado.
+Acerca
+Versão %@
+Um gira-discos na barra de menus para Spotify, Apple Music e sites de música.

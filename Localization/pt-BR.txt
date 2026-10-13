@@ -114,7 +114,6 @@ Tamanho do player
 Tamanho do título
 Tamanho do subtítulo
 Serviços de música compatíveis
-Spotify e Apple Music, por meio dos apps para Mac. Música tocando em um navegador ainda não é compatível.
 Permissão
 Na primeira vez que um player está aberto, o macOS pergunta se o Spindle pode controlá-lo. Escolha Permitir. Se você escolheu Não Permitir, ative novamente em Privacidade e Segurança, Automação.
 Abrir Ajustes de Automação
@@ -122,3 +121,19 @@ Dicas
 Passe o cursor sobre a pílula no topo da tela para abri-la e afaste-o para fechá-la.
 Arraste o widget da mesa para qualquer lugar; ele lembra onde você o deixou.
 Clique no disco na barra de menus para o player ou abra o Spindle novamente para a janela completa.
+Música em navegadores
+Segue sites de música no Safari e em navegadores baseados no Chrome. Cada navegador pede permissão uma vez e precisa de Permitir JavaScript de Eventos Apple ativado no menu Desenvolvedor.
+Ative Permitir JavaScript de Eventos Apple em: %@
+Navegador
+Estilo do braço
+Clássico
+Fino
+Angulado
+Janela do player transparente
+Mostra a janela principal como vidro fosco em vez da cor do álbum.
+Mostrar em todas as telas
+Coloca a pílula e a imagem de fundo da capa em todas as telas. Desativado usa apenas a tela principal.
+Spotify e Apple Music por meio dos apps para Mac, e sites de música como YouTube Music, Spotify e SoundCloud em um navegador quando Música em navegadores está ativado.
+Sobre
+Versão %@
+Um toca-discos na barra de menus para Spotify, Apple Music e sites de música.

@@ -114,7 +114,6 @@ Spelergrootte
 Titelgrootte
 Ondertitelgrootte
 Ondersteunde muziekdiensten
-Spotify en Apple Music, via hun Mac-apps. Muziek die in een browser speelt wordt nog niet ondersteund.
 Toestemming
 De eerste keer dat een speler open is, vraagt macOS of Spindle deze mag bedienen. Kies Sta toe. Als je Sta niet toe hebt gekozen, zet het weer aan onder Privacy en beveiliging, Automatisering.
 Open Automatisering-instellingen
@@ -122,3 +121,19 @@ Tips
 Houd de aanwijzer boven de pil bovenaan het scherm om hem te openen en beweeg weg om hem te sluiten.
 Sleep de bureaubladwidget waarheen je wilt; hij onthoudt waar je hem liet.
 Klik op de schijf in de menubalk voor de speler, of open Spindle opnieuw voor het volledige venster.
+Muziek in browsers
+Volgt muzieksites in Safari en Chrome-achtige browsers. Elke browser vraagt één keer om toestemming en heeft Sta JavaScript van Apple Events toe nodig in het Ontwikkel- of Ontwikkelaarsmenu.
+Zet Sta JavaScript van Apple Events toe aan in: %@
+Browser
+Toonarmstijl
+Klassiek
+Slank
+Gehoekt
+Transparant spelervenster
+Toont het hoofdvenster als matglas in plaats van in de albumkleur.
+Toon op alle beeldschermen
+Zet de pil en de hoesachtergrond op elk beeldscherm. Uit gebruikt alleen het hoofdbeeldscherm.
+Spotify en Apple Music via hun Mac-apps, en muzieksites zoals YouTube Music, Spotify en SoundCloud in een browser wanneer Muziek in browsers aan staat.
+Over
+Versie %@
+Een platenspeler in de menubalk voor Spotify, Apple Music en muzieksites.

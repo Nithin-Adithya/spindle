@@ -90,8 +90,10 @@ struct WidgetView: View {
             .padding(.horizontal, 16)
             .padding(.top, 34)
             .padding(.bottom, 10)
-            .background(LinearGradient(colors: [.clear, .black.opacity(0.8)], startPoint: .top,
-                                       endPoint: UnitPoint(x: 0.5, y: 0.45)))
+            // Covers carry their own lettering, so the text needs a solid dark footing.
+            .background(LinearGradient(colors: [.clear, .black.opacity(0.88), .black.opacity(0.94)],
+                                       startPoint: .top, endPoint: .bottom))
+            .shadow(color: .black.opacity(0.6), radius: 2, y: 1)
         }
     }
 
@@ -180,27 +182,38 @@ struct WidgetView: View {
 struct Stylus: View {
     let isPlaying: Bool
 
+    @ObservedObject private var settings = Settings.shared
+
     var body: some View {
+        let style = settings.stylusStyle
         GeometryReader { geo in
-            let pivot = CGPoint(x: geo.size.width * 0.82, y: geo.size.width * 0.18)
+            let unit = geo.size.width
+            let pivot = CGPoint(x: unit * 0.82, y: unit * 0.18)
             let length = geo.size.height * 0.82
+            // The angled arm bends near the head, the way an S-shaped tonearm does.
+            let elbow = CGPoint(x: pivot.x, y: pivot.y + length * 0.72)
+            let head = style == .angled ? CGPoint(x: pivot.x - unit * 0.14, y: pivot.y + length)
+                                        : CGPoint(x: pivot.x, y: pivot.y + length)
             ZStack {
                 Path { path in
                     path.move(to: pivot)
-                    path.addLine(to: CGPoint(x: pivot.x, y: pivot.y + length))
+                    if style == .angled { path.addLine(to: elbow) }
+                    path.addLine(to: head)
                 }
-                .stroke(Color(white: 0.82), style: StrokeStyle(lineWidth: geo.size.width * 0.045, lineCap: .round))
+                .stroke(style == .slim ? Color(white: 0.12) : Color(white: 0.82),
+                        style: StrokeStyle(lineWidth: unit * (style == .slim ? 0.025 : 0.045), lineCap: .round, lineJoin: .round))
                 RoundedRectangle(cornerRadius: 2)
-                    .fill(Color(white: 0.65))
-                    .frame(width: geo.size.width * 0.13, height: geo.size.width * 0.2)
-                    .position(x: pivot.x, y: pivot.y + length)
+                    .fill(style == .slim ? Color(red: 0.85, green: 0.2, blue: 0.2) : Color(white: 0.65))
+                    .frame(width: unit * (style == .slim ? 0.09 : 0.13), height: unit * 0.2)
+                    .rotationEffect(.degrees(style == .angled ? 28 : 0))
+                    .position(head)
             }
             .rotationEffect(.degrees(isPlaying ? 24 : 2), anchor: UnitPoint(x: 0.82, y: pivot.y / geo.size.height))
             .animation(.spring(duration: 0.7), value: isPlaying)
             Circle()
-                .fill(Color(white: 0.5))
-                .overlay(Circle().fill(Color(white: 0.85)).padding(geo.size.width * 0.04))
-                .frame(width: geo.size.width * 0.2, height: geo.size.width * 0.2)
+                .fill(style == .slim ? Color(white: 0.1) : Color(white: 0.5))
+                .overlay(Circle().fill(style == .slim ? Color(white: 0.3) : Color(white: 0.85)).padding(unit * 0.04))
+                .frame(width: unit * 0.2, height: unit * 0.2)
                 .position(pivot)
         }
         .shadow(color: .black.opacity(0.35), radius: 3, y: 2)

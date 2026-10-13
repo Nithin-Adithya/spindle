@@ -30,6 +30,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var widgetLayout = ""
     private let wallpaper = WallpaperManager()
     private var notches: [Notch] = []
+    private var notchesOnAllDisplays = true
     private var notchWatchdog: Timer?
     private var playerWindow: NSWindow?
     private var settingsWindow: NSWindow?
@@ -64,6 +65,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         applySettings()
         // `open Spindle.app --args --settings` goes straight to the settings window.
         if CommandLine.arguments.contains("--settings") { showSettings() }
+        // The first launch opens on the guide, since nothing else explains the permission prompt.
+        if !settings.hasSeenGuide {
+            settings.hasSeenGuide = true
+            settings.initialTab = .guide
+            showSettings()
+        }
 
         NotificationCenter.default.addObserver(
             forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main
@@ -86,7 +93,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func applyWallpaper() {
-        wallpaper.update(enabled: settings.coverAsWallpaper, artwork: model.artwork,
+        wallpaper.update(enabled: settings.coverAsWallpaper, allDisplays: settings.allDisplays, artwork: model.artwork,
                          trackID: model.track.map { "\($0.source.rawValue)-\($0.id)" })
     }
 
@@ -101,7 +108,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if widget?.hasShadow != shadow { widget?.hasShadow = shadow }
         widget?.invalidateShadow()
         applyWallpaper()
+        // The pills are built per display, so a change to that choice means rebuilding them.
+        if notchesOnAllDisplays != settings.allDisplays, !notches.isEmpty { setNotch(visible: false) }
         setNotch(visible: settings.showNotch)
+        applyPlayerWindowStyle()
+    }
+
+    private func applyPlayerWindowStyle() {
+        // The frosted background only shows through a window that isn't opaque.
+        playerWindow?.isOpaque = !settings.transparentPlayer
+        playerWindow?.backgroundColor = settings.transparentPlayer ? .clear : .windowBackgroundColor
     }
 
     private func applyDockIcon() {
@@ -141,10 +157,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             window.titleVisibility = .hidden
             window.isMovableByWindowBackground = true
             window.isReleasedWhenClosed = false
-            window.layoutIfNeeded()  // the hosted view sizes the window; center only after that
+            // The window starts with no size, and centering that puts its corner mid-screen.
+            window.setContentSize(window.contentViewController?.view.fittingSize ?? .zero)
             window.center()
             playerWindow = window
         }
+        applyPlayerWindowStyle()
         NSApp.activate(ignoringOtherApps: true)
         playerWindow?.makeKeyAndOrderFront(nil)
     }
@@ -156,7 +174,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             window.title = L("Spindle Settings")
             window.styleMask = [.titled, .closable]
             window.isReleasedWhenClosed = false
-            window.layoutIfNeeded()
+            window.setContentSize(window.contentViewController?.view.fittingSize ?? .zero)
             window.center()
             settingsWindow = window
         }
@@ -261,7 +279,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         guard notches.isEmpty else { return }
-        notches = NSScreen.screens.map(makeNotch)
+        notchesOnAllDisplays = settings.allDisplays
+        notches = (settings.allDisplays ? NSScreen.screens : Array(NSScreen.screens.prefix(1))).map(makeNotch)
 
         // Hover tracking can't see through a window that ignores the mouse, so watch the pointer.
         var lastInside = [Date](repeating: .distantPast, count: notches.count)

@@ -44,11 +44,18 @@ struct PlayerWindowView: View {
         }
         .padding(34)
         .frame(minWidth: 780, maxWidth: .infinity, minHeight: 380, maxHeight: .infinity)
-        .background(
-            LinearGradient(colors: [background, background.opacity(0.55)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .background(.black)
-                .ignoresSafeArea()  // run the color up under the transparent title bar
-        )
+        .background {
+            Group {
+                if settings.transparentPlayer {
+                    Rectangle().fill(.ultraThinMaterial).environment(\.colorScheme, .dark)
+                } else {
+                    LinearGradient(colors: [background, background.opacity(0.55)], startPoint: .topLeading,
+                                   endPoint: .bottomTrailing)
+                        .background(.black)
+                }
+            }
+            .ignoresSafeArea()  // run the color up under the transparent title bar
+        }
         .ignoresSafeArea()
         .animation(.easeInOut(duration: 0.4), value: model.albumColor)
     }

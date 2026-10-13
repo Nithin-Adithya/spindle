@@ -114,7 +114,6 @@ Ukuran pemutar
 Ukuran judul
 Ukuran subjudul
 Layanan musik yang didukung
-Spotify dan Apple Music, melalui app Mac masing-masing. Musik yang diputar di browser belum didukung.
 Izin
 Saat pemutar pertama kali terbuka, macOS menanyakan apakah Spindle boleh mengontrolnya. Pilih Izinkan. Jika Anda memilih Jangan Izinkan, aktifkan kembali di Privasi & Keamanan, Automasi.
 Buka Pengaturan Automasi
@@ -122,3 +121,19 @@ Kiat
 Arahkan penunjuk ke pil di bagian atas layar untuk membukanya, dan jauhkan untuk menutupnya.
 Seret widget desktop ke mana saja; widget mengingat tempat Anda meninggalkannya.
 Klik cakram di bar menu untuk pemutar, atau buka Spindle lagi untuk jendela penuh.
+Musik di browser
+Mengikuti situs musik di Safari dan browser berbasis Chrome. Setiap browser meminta izin satu kali dan memerlukan Izinkan JavaScript dari Apple Events diaktifkan di menu Pengembangan atau Pengembang.
+Aktifkan Izinkan JavaScript dari Apple Events di: %@
+Browser
+Gaya lengan pemutar
+Klasik
+Ramping
+Bersudut
+Jendela pemutar transparan
+Menampilkan jendela utama sebagai kaca buram alih-alih warna album.
+Tampilkan di semua layar
+Menempatkan pil dan wallpaper sampul di setiap layar. Mati hanya menggunakan layar utama.
+Spotify dan Apple Music melalui app Mac masing-masing, serta situs musik seperti YouTube Music, Spotify, dan SoundCloud di browser saat Musik di browser aktif.
+Tentang
+Versi %@
+Pemutar piringan di bar menu untuk Spotify, Apple Music, dan situs musik.

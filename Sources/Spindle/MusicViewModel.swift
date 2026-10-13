@@ -17,6 +17,8 @@ final class MusicViewModel: ObservableObject {
     @Published private(set) var idleMessage = L("Open Spotify or Music to play")
     /// When set, playback is paused once this moment passes.
     @Published var sleepDeadline: Date?
+    /// Browsers that refused the page script and need a setting turned on.
+    @Published private(set) var blockedBrowsers: [String] = []
 
     /// Set while the user drags the scrubber so polling doesn't fight the drag.
     var isScrubbing = false
@@ -86,7 +88,11 @@ final class MusicViewModel: ObservableObject {
                 ?? snapshots.first { $0.source == preferred && $0.track != nil }
                 ?? snapshots.first { $0.track != nil }
             let anyRunning = !snapshots.isEmpty
-            DispatchQueue.main.async { self?.apply(chosen, anyRunning: anyRunning) }
+            let blocked = bridge.blockedBrowsers.sorted()
+            DispatchQueue.main.async {
+                if self?.blockedBrowsers != blocked { self?.blockedBrowsers = blocked }
+                self?.apply(chosen, anyRunning: anyRunning)
+            }
         }
     }
 
@@ -114,7 +120,7 @@ final class MusicViewModel: ObservableObject {
                 let image = bridge.musicArtwork()
                 DispatchQueue.main.async { self?.setArtwork(image, for: key) }
             }
-        case .spotify:
+        case .spotify, .browser:
             guard let url = track.artworkURL else { return setArtwork(nil, for: key) }
             URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
                 let image = data.flatMap(NSImage.init(data:))

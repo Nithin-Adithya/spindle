@@ -114,7 +114,6 @@ Kích cỡ trình phát
 Cỡ tiêu đề
 Cỡ phụ đề
 Dịch vụ nhạc được hỗ trợ
-Spotify và Apple Music, thông qua ứng dụng trên Mac. Nhạc phát trong trình duyệt chưa được hỗ trợ.
 Quyền
 Lần đầu tiên có trình phát đang mở, macOS sẽ hỏi Spindle có được điều khiển trình phát đó không. Chọn Cho phép. Nếu bạn đã chọn Không cho phép, hãy bật lại trong Quyền riêng tư & Bảo mật, Tự động hóa.
 Mở cài đặt Tự động hóa
@@ -122,3 +121,19 @@ Mẹo
 Di chuột lên viên thuốc ở đầu màn hình để mở và di ra để đóng.
 Kéo tiện ích màn hình nền đến bất kỳ đâu; tiện ích sẽ nhớ vị trí bạn để lại.
 Bấm vào đĩa trên thanh menu để mở trình phát, hoặc mở lại Spindle để xem cửa sổ đầy đủ.
+Nhạc trong trình duyệt
+Theo dõi các trang nhạc trong Safari và các trình duyệt dựa trên Chrome. Mỗi trình duyệt hỏi quyền một lần và cần bật Cho phép JavaScript từ Apple Events trong menu Phát triển hoặc Nhà phát triển.
+Bật Cho phép JavaScript từ Apple Events trong: %@
+Trình duyệt
+Kiểu cần đĩa
+Cổ điển
+Mảnh
+Gấp góc
+Cửa sổ trình phát trong suốt
+Hiển thị cửa sổ chính dạng kính mờ thay vì màu album.
+Hiển thị trên mọi màn hình
+Đặt viên thuốc và hình nền bìa trên mọi màn hình. Khi tắt chỉ dùng màn hình chính.
+Spotify và Apple Music thông qua ứng dụng trên Mac, cùng các trang nhạc như YouTube Music, Spotify và SoundCloud trong trình duyệt khi bật Nhạc trong trình duyệt.
+Giới thiệu
+Phiên bản %@
+Máy phát đĩa trên thanh menu cho Spotify, Apple Music và các trang nhạc.

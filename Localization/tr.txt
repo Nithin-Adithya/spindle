@@ -114,7 +114,6 @@ Oynatıcı boyutu
 Başlık boyutu
 Alt başlık boyutu
 Desteklenen müzik servisleri
-Mac uygulamaları üzerinden Spotify ve Apple Music. Tarayıcıda çalan müzik henüz desteklenmiyor.
 İzin
 Bir oynatıcı ilk kez açıkken macOS, Spindle’ın onu denetleyip denetleyemeyeceğini sorar. İzin Ver’i seçin. İzin Verme’yi seçtiyseniz Gizlilik ve Güvenlik, Otomasyon bölümünden yeniden açın.
 Otomasyon Ayarlarını Aç
@@ -122,3 +121,19 @@ Otomasyon Ayarlarını Aç
 Açmak için imleci ekranın üstündeki hapın üzerine getirin, kapatmak için uzaklaştırın.
 Masaüstü araç takımını istediğiniz yere sürükleyin; bıraktığınız yeri hatırlar.
 Oynatıcı için menü çubuğundaki diske tıklayın veya tam pencere için Spindle’ı yeniden açın.
+Tarayıcılarda müzik
+Safari ve Chrome tabanlı tarayıcılardaki müzik sitelerini izler. Her tarayıcı bir kez izin ister ve Geliştir veya Geliştirici menüsünde Apple Olaylarından JavaScript’e İzin Ver seçeneğinin açık olması gerekir.
+Şurada Apple Olaylarından JavaScript’e İzin Ver’i açın: %@
+Tarayıcı
+Pikap kolu stili
+Klasik
+İnce
+Açılı
+Saydam oynatıcı penceresi
+Ana pencereyi albüm rengi yerine buzlu cam olarak gösterir.
+Tüm ekranlarda göster
+Hapı ve kapak duvar kâğıdını her ekrana koyar. Kapalıyken yalnızca ana ekran kullanılır.
+Mac uygulamaları üzerinden Spotify ve Apple Music; Tarayıcılarda müzik açıkken tarayıcıdaki YouTube Music, Spotify ve SoundCloud gibi müzik siteleri.
+Hakkında
+Sürüm %@
+Spotify, Apple Music ve müzik siteleri için menü çubuğunda bir pikap.

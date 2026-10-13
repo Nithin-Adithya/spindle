@@ -19,21 +19,28 @@ final class Settings: ObservableObject {
     var openWindow: () -> Void = {}
     /// Set by the app delegate; opens the main player window.
     var openPlayer: () -> Void = {}
+    /// Which settings tab to show the next time the window opens.
+    var initialTab = SettingsTab.general
 
     // General
     @AppStorage("showMenuBarIcon") var showMenuBarIcon = true
     @AppStorage("showDockIcon") var showDockIcon = false
     @AppStorage("artworkInDock") var artworkInDock = false
     @AppStorage("source") var source = SourcePreference.automatic
+    @AppStorage("browserPlayback") var browserPlayback = false
     @AppStorage("useAlbumColor") var useAlbumColor = true
     @AppStorage("timeCountsDown") var timeCountsDown = false
     @AppStorage("playerSize") var playerSize = WidgetSize.medium
     @AppStorage("vinylStyle") var vinylStyle = VinylStyle.classic
+    @AppStorage("stylusStyle") var stylusStyle = StylusStyle.classic
+    @AppStorage("transparentPlayer") var transparentPlayer = false
+    @AppStorage("hasSeenGuide") var hasSeenGuide = false
 
     // Notch
     @AppStorage("showNotch") var showNotch = false
     @AppStorage("notchStyle") var notchStyle = NotchStyle.black
     @AppStorage("hideNotchInFullScreen") var hideNotchInFullScreen = true
+    @AppStorage("allDisplays") var allDisplays = true
 
     // Desktop widget
     @AppStorage("showWidget") var showWidget = false
@@ -64,6 +71,20 @@ enum VinylStyle: String, CaseIterable, Identifiable {
         case .tinted: return L("Album color")
         case .picture: return L("Picture disc")
         case .gold: return L("Gold")
+        }
+    }
+}
+
+enum StylusStyle: String, CaseIterable, Identifiable {
+    case classic, slim, angled
+
+    var id: String { rawValue }
+
+    var label: String {
+        switch self {
+        case .classic: return L("Classic")
+        case .slim: return L("Slim")
+        case .angled: return L("Angled")
         }
     }
 }
@@ -213,8 +234,12 @@ extension Color {
     }
 }
 
+enum SettingsTab: Hashable {
+    case general, notch, widget, shortcuts, guide
+}
+
 enum SourcePreference: String, CaseIterable, Identifiable {
-    case automatic, music, spotify
+    case automatic, music, spotify, browser
 
     var id: String { rawValue }
 
@@ -223,14 +248,17 @@ enum SourcePreference: String, CaseIterable, Identifiable {
         case .automatic: return L("Automatic")
         case .music: return "Apple Music"
         case .spotify: return "Spotify"
+        case .browser: return L("Browser")
         }
     }
 
     var sources: [PlayerSource] {
         switch self {
-        case .automatic: return PlayerSource.allCases
+        // Apps come first so a paused browser tab never hides a playing app.
+        case .automatic: return Settings.shared.browserPlayback ? [.music, .spotify, .browser] : [.music, .spotify]
         case .music: return [.music]
         case .spotify: return [.spotify]
+        case .browser: return [.browser]
         }
     }
 }

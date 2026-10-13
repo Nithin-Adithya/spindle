@@ -11,7 +11,7 @@ final class WallpaperManager {
         return base.appendingPathComponent("Spindle/Wallpaper", isDirectory: true)
     }
 
-    func update(enabled: Bool, artwork: NSImage?, trackID: String?) {
+    func update(enabled: Bool, allDisplays: Bool, artwork: NSImage?, trackID: String?) {
         guard enabled else { return restore() }
         guard let artwork, let trackID, let data = artwork.tiffRepresentation,
               let png = NSBitmapImageRep(data: data)?.representation(using: .png, properties: [:]) else { return }
@@ -37,8 +37,13 @@ final class WallpaperManager {
             .imageScaling: NSImageScaling.scaleProportionallyUpOrDown.rawValue,
             .allowClipping: true,
         ]
-        for screen in NSScreen.screens {
-            try? NSWorkspace.shared.setDesktopImageURL(file, for: screen, options: options)
+        for (index, screen) in NSScreen.screens.enumerated() {
+            if allDisplays || index == 0 {
+                try? NSWorkspace.shared.setDesktopImageURL(file, for: screen, options: options)
+            } else if let path = (UserDefaults.standard.dictionary(forKey: originalsKey) as? [String: String])?[Self.key(screen)] {
+                // A display that is no longer included gets its own picture back.
+                try? NSWorkspace.shared.setDesktopImageURL(URL(fileURLWithPath: path), for: screen, options: [:])
+            }
         }
     }
 

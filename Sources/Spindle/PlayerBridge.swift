@@ -1,12 +1,13 @@
 import AppKit
 
 enum PlayerSource: String, CaseIterable {
-    case music, spotify
+    case music, spotify, browser
 
     var bundleID: String {
         switch self {
         case .music: return "com.apple.Music"
         case .spotify: return "com.spotify.client"
+        case .browser: return ""
         }
     }
 
@@ -14,6 +15,7 @@ enum PlayerSource: String, CaseIterable {
         switch self {
         case .music: return "Music"
         case .spotify: return "Spotify"
+        case .browser: return ""
         }
     }
 
@@ -22,11 +24,13 @@ enum PlayerSource: String, CaseIterable {
         switch self {
         case .music: return ["com.apple.Music.playerInfo", "com.apple.iTunes.playerInfo"]
         case .spotify: return ["com.spotify.client.PlaybackStateChanged"]
+        case .browser: return []
         }
     }
 
     var isRunning: Bool {
-        !NSRunningApplication.runningApplications(withBundleIdentifier: bundleID).isEmpty
+        if self == .browser { return BrowserBridge.anyRunning }
+        return !NSRunningApplication.runningApplications(withBundleIdentifier: bundleID).isEmpty
     }
 }
 
@@ -54,6 +58,10 @@ final class PlayerBridge {
     static let queue = DispatchQueue(label: "spindle.applescript")
 
     private var compiled: [String: NSAppleScript] = [:]
+    private let browsers = BrowserBridge()
+
+    /// Browsers that need "Allow JavaScript from Apple Events" turned on.
+    var blockedBrowsers: Set<String> { browsers.blocked }
 
     private func run(_ source: String, cache: Bool = true) -> NSAppleEventDescriptor? {
         let script: NSAppleScript
@@ -72,12 +80,13 @@ final class PlayerBridge {
     func snapshot(of source: PlayerSource) -> PlayerSnapshot? {
         // Asking a closed app for its state would launch it.
         guard source.isRunning else { return nil }
+        if source == .browser { return browsers.snapshot() }
 
         let fields: String
         switch source {
         case .music:
             fields = "{s, v, name of t, artist of t, album of t, duration of t, player position, (database ID of t) as text}"
-        case .spotify:
+        case .spotify, .browser:
             fields = "{s, v, name of t, artist of t, album of t, (duration of t) / 1000, player position, id of t, artwork url of t}"
         }
         let script = """
@@ -122,18 +131,20 @@ final class PlayerBridge {
         return NSImage(data: result.data)
     }
 
-    func playPause(_ source: PlayerSource) { command("playpause", source) }
-    func pause(_ source: PlayerSource) { command("pause", source) }
-    func next(_ source: PlayerSource) { command("next track", source) }
-    func previous(_ source: PlayerSource) { command("previous track", source) }
+    func playPause(_ source: PlayerSource) { source == .browser ? browsers.playPause() : command("playpause", source) }
+    func pause(_ source: PlayerSource) { source == .browser ? browsers.pause() : command("pause", source) }
+    func next(_ source: PlayerSource) { source == .browser ? browsers.next() : command("next track", source) }
+    func previous(_ source: PlayerSource) { source == .browser ? browsers.previous() : command("previous track", source) }
 
     func seek(_ source: PlayerSource, to seconds: Double) {
         guard source.isRunning else { return }
+        if source == .browser { return browsers.seek(to: seconds) }
         _ = run("tell application \"\(source.appName)\" to set player position to \(Int(seconds))", cache: false)
     }
 
     func setVolume(_ source: PlayerSource, to volume: Double) {
         guard source.isRunning else { return }
+        if source == .browser { return browsers.setVolume(to: volume) }
         _ = run("tell application \"\(source.appName)\" to set sound volume to \(Int(volume))", cache: false)
     }
 

@@ -97,3 +97,28 @@ Vetro scuro in modalità scura, vetro chiaro in modalità chiara.
 Sempre chiaro, con testo e controlli neri.
 Sempre scuro, con testo e controlli bianchi.
 Spazio
+Nero classico
+Picture disc
+Oro
+Copertina
+Solo disco
+La copertina riempie la scheda, con i dettagli del brano e i controlli sopra.
+Solo il disco che gira, senza scheda dietro. Fai clic per riprodurre o mettere in pausa.
+Liquid Glass
+Apri player
+Guida
+Mostra tempo rimanente
+Il tempo a destra della barra di avanzamento conta alla rovescia invece di mostrare la durata del brano.
+Stile del disco
+Dimensione del player
+Dimensione del titolo
+Dimensione del sottotitolo
+Servizi musicali supportati
+Spotify e Apple Music, tramite le loro app per Mac. La musica riprodotta in un browser non è ancora supportata.
+Autorizzazione
+La prima volta che un player è aperto, macOS chiede se Spindle può controllarlo. Scegli Consenti. Se hai scelto Non consentire, riattivalo in Privacy e sicurezza, Automazione.
+Apri impostazioni Automazione
+Suggerimenti
+Passa il puntatore sulla pillola in alto sullo schermo per aprirla e allontanalo per chiuderla.
+Trascina il widget della scrivania dove vuoi; ricorda dove l’hai lasciato.
+Fai clic sul disco nella barra dei menu per il player, oppure riapri Spindle per la finestra completa.

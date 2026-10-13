@@ -97,3 +97,28 @@ Vidro escuro no Modo Escuro, vidro claro no Modo Claro.
 Sempre claro, com texto e controles pretos.
 Sempre escuro, com texto e controles brancos.
 Espaço
+Preto clássico
+Picture disc
+Dourado
+Capa
+Somente o disco
+A capa preenche o cartão, com os detalhes da faixa e os controles por cima.
+Apenas o disco girando, sem cartão atrás. Clique nele para reproduzir ou pausar.
+Liquid Glass
+Abrir player
+Guia
+Mostrar tempo restante
+O tempo à direita da barra de progresso faz contagem regressiva em vez de mostrar a duração da faixa.
+Estilo do disco
+Tamanho do player
+Tamanho do título
+Tamanho do subtítulo
+Serviços de música compatíveis
+Spotify e Apple Music, por meio dos apps para Mac. Música tocando em um navegador ainda não é compatível.
+Permissão
+Na primeira vez que um player está aberto, o macOS pergunta se o Spindle pode controlá-lo. Escolha Permitir. Se você escolheu Não Permitir, ative novamente em Privacidade e Segurança, Automação.
+Abrir Ajustes de Automação
+Dicas
+Passe o cursor sobre a pílula no topo da tela para abri-la e afaste-o para fechá-la.
+Arraste o widget da mesa para qualquer lugar; ele lembra onde você o deixou.
+Clique no disco na barra de menus para o player ou abra o Spindle novamente para a janela completa.

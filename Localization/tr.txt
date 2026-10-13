@@ -97,3 +97,28 @@ Koyu Modda koyu cam, Açık Modda açık cam.
 Her zaman açık; metin ve denetimler siyah.
 Her zaman koyu; metin ve denetimler beyaz.
 Boşluk
+Klasik siyah
+Resimli plak
+Altın
+Kapak
+Yalnızca plak
+Kapak kartı doldurur; parça ayrıntıları ve denetimler üzerinde yer alır.
+Arkasında kart olmadan yalnızca dönen plak. Çalmak veya duraklatmak için tıklayın.
+Liquid Glass
+Oynatıcıyı aç
+Kılavuz
+Kalan süreyi göster
+Arama çubuğunun sağındaki süre, parçanın uzunluğunu göstermek yerine geri sayar.
+Plak stili
+Oynatıcı boyutu
+Başlık boyutu
+Alt başlık boyutu
+Desteklenen müzik servisleri
+Mac uygulamaları üzerinden Spotify ve Apple Music. Tarayıcıda çalan müzik henüz desteklenmiyor.
+İzin
+Bir oynatıcı ilk kez açıkken macOS, Spindle’ın onu denetleyip denetleyemeyeceğini sorar. İzin Ver’i seçin. İzin Verme’yi seçtiyseniz Gizlilik ve Güvenlik, Otomasyon bölümünden yeniden açın.
+Otomasyon Ayarlarını Aç
+İpuçları
+Açmak için imleci ekranın üstündeki hapın üzerine getirin, kapatmak için uzaklaştırın.
+Masaüstü araç takımını istediğiniz yere sürükleyin; bıraktığınız yeri hatırlar.
+Oynatıcı için menü çubuğundaki diske tıklayın veya tam pencere için Spindle’ı yeniden açın.

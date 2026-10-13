@@ -97,3 +97,28 @@ Verre sombre en mode sombre, verre clair en mode clair.
 Toujours clair, avec texte et commandes noirs.
 Toujours sombre, avec texte et commandes blancs.
 Espace
+Noir classique
+Picture-disc
+Or
+Pochette
+Disque seul
+La pochette remplit la carte, avec les détails de la piste et les commandes par-dessus.
+Seulement le disque qui tourne, sans carte derrière. Cliquez dessus pour lire ou mettre en pause.
+Liquid Glass
+Ouvrir le lecteur
+Guide
+Afficher le temps restant
+La durée à droite de la barre de lecture décompte au lieu d’afficher la longueur de la piste.
+Style du disque
+Taille du lecteur
+Taille du titre
+Taille du sous-titre
+Services de musique pris en charge
+Spotify et Apple Music, via leurs apps Mac. La musique lue dans un navigateur n’est pas encore prise en charge.
+Autorisation
+La première fois qu’un lecteur est ouvert, macOS demande si Spindle peut le contrôler. Choisissez Autoriser. Si vous avez choisi Ne pas autoriser, réactivez-le dans Confidentialité et sécurité, Automatisation.
+Ouvrir les réglages Automatisation
+Astuces
+Survolez la pilule en haut de l’écran pour l’ouvrir, et éloignez le pointeur pour la fermer.
+Faites glisser le widget de bureau où vous voulez ; il se souvient de son emplacement.
+Cliquez sur le disque dans la barre des menus pour le lecteur, ou rouvrez Spindle pour la fenêtre complète.

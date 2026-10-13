@@ -97,3 +97,28 @@ Kính tối ở Chế độ tối, kính sáng ở Chế độ sáng.
 Luôn sáng, với chữ và nút điều khiển màu đen.
 Luôn tối, với chữ và nút điều khiển màu trắng.
 Dấu cách
+Đen cổ điển
+Đĩa in hình
+Vàng
+Bìa
+Chỉ đĩa nhạc
+Bìa lấp đầy thẻ, với chi tiết bài hát và nút điều khiển ở phía trên.
+Chỉ có đĩa nhạc đang quay, không có thẻ phía sau. Bấm vào để phát hoặc tạm dừng.
+Liquid Glass
+Mở trình phát
+Hướng dẫn
+Hiển thị thời gian còn lại
+Thời gian bên phải thanh tua sẽ đếm ngược thay vì hiển thị độ dài bài hát.
+Kiểu đĩa
+Kích cỡ trình phát
+Cỡ tiêu đề
+Cỡ phụ đề
+Dịch vụ nhạc được hỗ trợ
+Spotify và Apple Music, thông qua ứng dụng trên Mac. Nhạc phát trong trình duyệt chưa được hỗ trợ.
+Quyền
+Lần đầu tiên có trình phát đang mở, macOS sẽ hỏi Spindle có được điều khiển trình phát đó không. Chọn Cho phép. Nếu bạn đã chọn Không cho phép, hãy bật lại trong Quyền riêng tư & Bảo mật, Tự động hóa.
+Mở cài đặt Tự động hóa
+Mẹo
+Di chuột lên viên thuốc ở đầu màn hình để mở và di ra để đóng.
+Kéo tiện ích màn hình nền đến bất kỳ đâu; tiện ích sẽ nhớ vị trí bạn để lại.
+Bấm vào đĩa trên thanh menu để mở trình phát, hoặc mở lại Spindle để xem cửa sổ đầy đủ.

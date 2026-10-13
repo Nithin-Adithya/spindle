@@ -97,3 +97,28 @@ Dunkles Glas im Dunkelmodus, helles Glas im Hellmodus.
 Immer hell, mit schwarzem Text und schwarzen Steuerelementen.
 Immer dunkel, mit weißem Text und weißen Steuerelementen.
 Leertaste
+Klassisch schwarz
+Picture Disc
+Gold
+Cover
+Nur Platte
+Das Cover füllt die Karte, Titeldetails und Steuerelemente liegen darüber.
+Nur die drehende Platte, ohne Karte dahinter. Klicke darauf, um abzuspielen oder zu pausieren.
+Liquid Glass
+Player öffnen
+Anleitung
+Verbleibende Zeit anzeigen
+Die Zeit rechts neben der Suchleiste zählt herunter, statt die Länge des Titels anzuzeigen.
+Plattenstil
+Player-Größe
+Titelgröße
+Untertitelgröße
+Unterstützte Musikdienste
+Spotify und Apple Music über ihre Mac-Apps. Musik, die in einem Browser läuft, wird noch nicht unterstützt.
+Berechtigung
+Wenn zum ersten Mal ein Player geöffnet ist, fragt macOS, ob Spindle ihn steuern darf. Wähle „Erlauben“. Falls du „Nicht erlauben“ gewählt hast, aktiviere es wieder unter „Datenschutz & Sicherheit“ > „Automation“.
+Automation-Einstellungen öffnen
+Tipps
+Bewege den Zeiger auf die Pille oben am Bildschirm, um sie zu öffnen, und davon weg, um sie zu schließen.
+Ziehe das Schreibtisch-Widget an eine beliebige Stelle; es merkt sich die Position.
+Klicke auf die Platte in der Menüleiste für den Player oder öffne Spindle erneut für das große Fenster.

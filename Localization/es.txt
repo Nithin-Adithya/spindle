@@ -97,3 +97,28 @@ Cristal oscuro en modo oscuro, cristal claro en modo claro.
 Siempre claro, con texto y controles negros.
 Siempre oscuro, con texto y controles blancos.
 Espacio
+Negro clásico
+Picture disc
+Dorado
+Carátula
+Solo el disco
+La carátula llena la tarjeta, con los detalles de la pista y los controles encima.
+Solo el disco girando, sin tarjeta detrás. Haz clic para reproducir o pausar.
+Liquid Glass
+Abrir reproductor
+Guía
+Mostrar tiempo restante
+El tiempo a la derecha de la barra de progreso cuenta hacia atrás en lugar de mostrar la duración de la pista.
+Estilo del disco
+Tamaño del reproductor
+Tamaño del título
+Tamaño del subtítulo
+Servicios de música compatibles
+Spotify y Apple Music, a través de sus apps para Mac. La música que suena en un navegador aún no es compatible.
+Permiso
+La primera vez que hay un reproductor abierto, macOS pregunta si Spindle puede controlarlo. Elige Permitir. Si elegiste No permitir, vuelve a activarlo en Privacidad y seguridad, Automatización.
+Abrir ajustes de Automatización
+Consejos
+Pasa el puntero sobre la píldora en la parte superior de la pantalla para abrirla y aléjalo para cerrarla.
+Arrastra el widget de escritorio a cualquier lugar; recuerda dónde lo dejaste.
+Haz clic en el disco de la barra de menús para ver el reproductor, o abre Spindle de nuevo para la ventana completa.

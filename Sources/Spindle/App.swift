@@ -62,6 +62,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         .store(in: &subscriptions)
         HotKeyCenter.shared.handler = { [weak self] in self?.perform($0) }
         applySettings()
+        // `open Spindle.app --args --settings` goes straight to the settings window.
+        if CommandLine.arguments.contains("--settings") { showSettings() }
 
         NotificationCenter.default.addObserver(
             forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main

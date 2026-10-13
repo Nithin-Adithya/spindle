@@ -97,3 +97,28 @@ Vidro escuro no modo escuro, vidro claro no modo claro.
 Sempre claro, com texto e controlos pretos.
 Sempre escuro, com texto e controlos brancos.
 Espaço
+Preto clássico
+Picture disc
+Dourado
+Capa
+Apenas o disco
+A capa preenche o cartão, com os detalhes da faixa e os controlos por cima.
+Apenas o disco a rodar, sem cartão por trás. Clique nele para reproduzir ou pausar.
+Liquid Glass
+Abrir leitor
+Guia
+Mostrar tempo restante
+O tempo à direita da barra de progresso faz contagem decrescente em vez de mostrar a duração da faixa.
+Estilo do disco
+Tamanho do leitor
+Tamanho do título
+Tamanho do subtítulo
+Serviços de música suportados
+Spotify e Apple Music, através das respetivas aplicações para Mac. A música a tocar num navegador ainda não é suportada.
+Permissão
+Da primeira vez que um leitor está aberto, o macOS pergunta se o Spindle o pode controlar. Escolha Permitir. Se escolheu Não permitir, volte a ativar em Privacidade e segurança, Automatização.
+Abrir definições de Automatização
+Dicas
+Passe o cursor sobre a pílula no topo do ecrã para a abrir e afaste-o para a fechar.
+Arraste o widget da secretária para qualquer lugar; ele lembra-se de onde o deixou.
+Clique no disco na barra de menus para o leitor, ou abra novamente o Spindle para a janela completa.

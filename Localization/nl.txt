@@ -97,3 +97,28 @@ Donker glas in de donkere modus, licht glas in de lichte modus.
 Altijd licht, met zwarte tekst en bediening.
 Altijd donker, met witte tekst en bediening.
 Spatie
+Klassiek zwart
+Picturedisc
+Goud
+Hoes
+Alleen plaat
+De hoes vult de kaart, met de nummerdetails en bediening eroverheen.
+Alleen de draaiende plaat, zonder kaart erachter. Klik erop om af te spelen of te pauzeren.
+Liquid Glass
+Open speler
+Gids
+Toon resterende tijd
+De tijd rechts van de zoekbalk telt af in plaats van de lengte van het nummer te tonen.
+Plaatstijl
+Spelergrootte
+Titelgrootte
+Ondertitelgrootte
+Ondersteunde muziekdiensten
+Spotify en Apple Music, via hun Mac-apps. Muziek die in een browser speelt wordt nog niet ondersteund.
+Toestemming
+De eerste keer dat een speler open is, vraagt macOS of Spindle deze mag bedienen. Kies Sta toe. Als je Sta niet toe hebt gekozen, zet het weer aan onder Privacy en beveiliging, Automatisering.
+Open Automatisering-instellingen
+Tips
+Houd de aanwijzer boven de pil bovenaan het scherm om hem te openen en beweeg weg om hem te sluiten.
+Sleep de bureaubladwidget waarheen je wilt; hij onthoudt waar je hem liet.
+Klik op de schijf in de menubalk voor de speler, of open Spindle opnieuw voor het volledige venster.

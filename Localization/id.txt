@@ -97,3 +97,28 @@ Kaca gelap di Mode Gelap, kaca terang di Mode Terang.
 Selalu terang, dengan teks dan kontrol hitam.
 Selalu gelap, dengan teks dan kontrol putih.
 Spasi
+Hitam klasik
+Piringan bergambar
+Emas
+Sampul
+Hanya piringan
+Sampul memenuhi kartu, dengan detail lagu dan kontrol di atasnya.
+Hanya piringan yang berputar, tanpa kartu di belakangnya. Klik untuk memutar atau menjeda.
+Liquid Glass
+Buka pemutar
+Panduan
+Tampilkan sisa waktu
+Waktu di kanan bar pencarian menghitung mundur alih-alih menampilkan durasi lagu.
+Gaya piringan
+Ukuran pemutar
+Ukuran judul
+Ukuran subjudul
+Layanan musik yang didukung
+Spotify dan Apple Music, melalui app Mac masing-masing. Musik yang diputar di browser belum didukung.
+Izin
+Saat pemutar pertama kali terbuka, macOS menanyakan apakah Spindle boleh mengontrolnya. Pilih Izinkan. Jika Anda memilih Jangan Izinkan, aktifkan kembali di Privasi & Keamanan, Automasi.
+Buka Pengaturan Automasi
+Kiat
+Arahkan penunjuk ke pil di bagian atas layar untuk membukanya, dan jauhkan untuk menutupnya.
+Seret widget desktop ke mana saja; widget mengingat tempat Anda meninggalkannya.
+Klik cakram di bar menu untuk pemutar, atau buka Spindle lagi untuk jendela penuh.

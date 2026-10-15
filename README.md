@@ -105,3 +105,7 @@ To add or fix a translation, edit the matching line in `Localization/<language>.
 - **Browser next/previous** press the site's own buttons, so they work best on YouTube, YouTube Music, Spotify and SoundCloud.
 - **Translations** were written without a native-speaker review.
 - **Not notarised:** the build is signed ad hoc, so on another Mac it has to be opened with right-click → *Open*.
+
+## License
+
+Spindle is released under the [MIT License](LICENSE). Album artwork shown in the screenshots belongs to its respective owners.

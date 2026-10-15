@@ -2,6 +2,9 @@ import SwiftUI
 
 /// The main window: the record at full size with everything about the track beside it.
 struct PlayerWindowView: View {
+    /// Fixed so a long title truncates instead of stretching the window.
+    static let size = CGSize(width: 780, height: 380)
+
     @ObservedObject var model: MusicViewModel
     @ObservedObject var settings = Settings.shared
 
@@ -43,7 +46,8 @@ struct PlayerWindowView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(34)
-        .frame(minWidth: 780, maxWidth: .infinity, minHeight: 380, maxHeight: .infinity)
+        .frame(width: Self.size.width)
+        .frame(maxHeight: .infinity)  // fill the height, title bar included
         .background {
             Group {
                 if settings.transparentPlayer {

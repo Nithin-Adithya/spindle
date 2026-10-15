@@ -158,7 +158,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             window.isMovableByWindowBackground = true
             window.isReleasedWhenClosed = false
             // The window starts with no size, and centering that puts its corner mid-screen.
-            window.setContentSize(window.contentViewController?.view.fittingSize ?? .zero)
+            window.setContentSize(PlayerWindowView.size)
             window.center()
             playerWindow = window
         }

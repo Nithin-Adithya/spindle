@@ -213,17 +213,17 @@ struct NotchView: View {
 
     var body: some View {
         let open = Self.expandedSize(notchWidth: notchWidth, collapsedHeight: collapsedHeight, hasNotch: hasNotch)
-        VStack(spacing: 10) {
+        VStack(spacing: 6) {
             // The cover and the bars are the same views in both states, so they
             // grow and slide into place instead of being swapped out.
-            HStack(spacing: expanded ? 14 : 0) {
-                cover(size: expanded ? 92 : 20, radius: expanded ? 14 : 5)
+            HStack(spacing: expanded ? 12 : 0) {
+                cover(size: expanded ? Self.openCover : 20, radius: expanded ? 12 : 5)
                 if expanded {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(model.track?.title ?? L("Nothing playing")).font(.title2.weight(.semibold))
-                        Text(model.track?.artist ?? "—").font(.title3).foregroundStyle(ink.opacity(0.7))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(model.track?.title ?? L("Nothing playing")).font(.title3.weight(.semibold))
+                        Text(model.track?.artist ?? "—").font(.body).foregroundStyle(ink.opacity(0.7))
                         if let album = model.track?.album, !album.isEmpty {
-                            Text(album).font(.callout).foregroundStyle(ink.opacity(0.5))
+                            Text(album).font(.caption).foregroundStyle(ink.opacity(0.5))
                         }
                     }
                     .lineLimit(1)
@@ -231,18 +231,18 @@ struct NotchView: View {
                 }
                 Spacer(minLength: expanded ? 0 : notchWidth)
                 SpectrumView(isPlaying: model.isPlaying, barCount: 6, color: barColor)
-                    .frame(width: expanded ? 44 : 22, height: expanded ? 34 : 14)
+                    .frame(width: expanded ? 36 : 22, height: expanded ? 28 : 14)
             }
-            .frame(height: expanded ? 92 : collapsedHeight)
+            .frame(height: expanded ? Self.openCover : collapsedHeight)
 
             if expanded {
                 Scrubber(model: model, large: true, tint: ink).transition(.opacity)
-                TransportControls(model: model, scale: 1.2, tint: ink).transition(.opacity)
+                TransportControls(model: model, scale: 1.0, tint: ink).transition(.opacity)
             }
         }
         .foregroundStyle(ink)
-        .padding(.horizontal, expanded ? 22 : 10)
-        .padding(.top, expanded ? (hasNotch ? collapsedHeight + 6 : 18) : 0)
+        .padding(.horizontal, expanded ? 18 : 10)
+        .padding(.top, expanded ? (hasNotch ? collapsedHeight + 6 : 14) : 0)
         .frame(width: expanded ? open.width : notchWidth + Self.wing * 2,
                height: expanded ? open.height : collapsedHeight, alignment: .top)
         .background(surface)
@@ -253,7 +253,7 @@ struct NotchView: View {
     }
 
     @ViewBuilder private var surface: some View {
-        let radius = expanded ? 26.0 : 12.0
+        let radius = expanded ? 22.0 : 12.0
         let shape = UnevenRoundedRectangle(bottomLeadingRadius: radius, bottomTrailingRadius: radius, style: .continuous)
         if #available(macOS 26.0, *), let dark = glassIsDark {
             Color.clear
@@ -280,8 +280,12 @@ struct NotchView: View {
     }
 
     static let wing = 40.0
+    /// Cover size in the open player; it sets the height of the top row.
+    static let openCover = 68.0
 
+    /// The open player's size. The window and the hover region are built from this,
+    /// so it has to match the content: top inset + cover row + seek bar + controls.
     static func expandedSize(notchWidth: Double, collapsedHeight: Double, hasNotch: Bool) -> CGSize {
-        CGSize(width: max(notchWidth + wing * 2, 520), height: (hasNotch ? collapsedHeight + 6 : 18) + 222)
+        CGSize(width: max(notchWidth + wing * 2, 460), height: (hasNotch ? collapsedHeight + 6 : 14) + openCover + 96)
     }
 }
